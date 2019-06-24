@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Preference
+        android:key="@string/pk_about"
+        android:title="@string/pref_title_about"
+        android:widgetLayout="@layout/layout_preference"/>
+
+    <Preference
+        android:enabled="true"
+        android:key="PERF_LAST_UPDATE_CHECK"
+        android:persistent="false"
+        android:selectable="true"
+        android:summary=""
+        android:title="@string/pref_title_check_update"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="@string/pk_ImmersionStatusBar"
+        android:summary="@string/status_bar_immersion"
+        android:title="@string/immersion_status_bar" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="@string/pk_navigationBarColorChange"
+        android:summary="@string/navigation_bar_color_change_s"
+        android:title="@string/navigation_bar_color_change" />
+
+    <ListPreference
+        android:defaultValue="0"
+        android:entries="@array/bookshelf_px_title"
+        android:entryValues="@array/bookshelf_px_value"
+        android:key="@string/pk_bookshelf_px"
+        android:title="@string/bookshelf_px" />
+
+    <MultiSelectListPreference
+        android:entries="@array/bookshelf_show_title"
+        android:entryValues="@array/bookshelf_show_value"
+        android:key="@string/pk_bookshelf_show"
+        android:title="@string/bookshelf_show" />
+
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="@string/pk_auto_refresh"
+        android:summary="@string/ps_auto_refresh"
+        android:title="@string/pt_auto_refresh" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="@string/pk_auto_download"
+        android:summary="@string/ps_auto_download"
+        android:title="@string/pt_auto_download" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="@string/pk_default_read"
+        android:summary="@string/ps_default_read"
+        android:title="@string/pt_default_read" />
+
+    <com.kunfei.bookshelf.widget.number.NumberPickerPreference
+        android:defaultValue="6"
+        android:key="@string/pk_threads_num"
+        android:summary="@string/threads_num"
+        android:title="@string/update_search_threads_num"
+        app:MaxValue="1024"
+        app:MinValue="1" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="@string/pk_find_expand_group"
+        android:summary="@string/default_expand_first"
+        android:title="@string/auto_expand_find" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="showAllFind"
+        android:summary="@string/ps_show_all_find"
+        android:title="@string/pt_show_all_find" />
+
+
+
+    <Preference
+        android:key="@string/pk_download_path"
+        android:title="@string/download_path" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="upChangeSourceLastChapter"
+        android:summary="@string/up_change_source_last_chapter_s"
+        android:title="@string/up_change_source_last_chapter_t" />
+
+
+    <Preference
+        android:key="@string/pk_left_menu_header"
+        android:persistent="false"
+        android:title="@string/pref_ui"
+        android:widgetLayout="@layout/layout_preference"/>
+
+
+</PreferenceScreen>

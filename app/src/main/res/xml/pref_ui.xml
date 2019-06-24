@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Preference
+        android:key="@string/pk_logo_path"
+        android:title="@string/logo_path"
+        android:summary="@string/pls_select_logo_path_summary"/>
+
+
+    <EditTextPreference
+        android:dialogTitle="@string/pls_input_logo_title"
+        android:key="@string/pk_logo_title"
+        android:title="@string/logo_title"
+        android:summary="@string/read_summary"/>
+
+
+    <ListPreference
+        android:defaultValue="0"
+        android:entries="@array/logo_title_text"
+        android:entryValues="@array/logo_title_value"
+        android:key="@string/pk_logo_title_align"
+        android:title="@string/logo_title_align" />
+
+
+
+</PreferenceScreen>

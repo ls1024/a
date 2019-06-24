@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_content"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/background"
+    android:padding="10dp"
+    android:orientation="vertical">
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="6dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/msg_tv1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="选择书源"
+                android:textSize="18sp"
+                android:layout_gravity="bottom"
+                android:textColor="@color/tv_text_default"
+                 />
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/ib_select_all"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_select_all"
+                android:background="@color/background"
+                android:tint="@color/tv_text_default"
+                android:layout_gravity="bottom"
+                android:text="" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/ib_groups"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_groups"
+                android:background="@color/background"
+                android:layout_marginBottom="4dp"
+                android:layout_gravity="bottom"
+                android:tint="@color/tv_text_default"
+                android:text=""
+                />
+
+            <com.kunfei.bookshelf.widget.views.ATECheckBox
+                android:id="@+id/cb_no_pic_search"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:theme="@style/MyCheckBox"
+                android:text="无图搜索"
+                android:layout_gravity="bottom|right"
+                android:tint="@color/tv_text_default"
+                android:textColor="@color/tv_text_default" />
+
+            </LinearLayout>
+
+    <LinearLayout
+
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0.0dip"
+        android:layout_marginBottom="0.0dip">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:background="#ffff8c00"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="6dp"
+        android:paddingLeft="6dp"
+        android:paddingRight="6dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:imeOptions="actionSearch"
+            app:iconifiedByDefault="false"
+            app:searchIcon="@null"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="2dp"
+            app:defaultQueryHint="搜索" />
+
+
+
+
+    </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginBottom="5dp"
+            android:layout_width="fill_parent">
+            <com.kunfei.bookshelf.widget.recycler.scroller.FastScrollRecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
+
+
+    <LinearLayout
+
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0.0dip"
+        android:layout_marginBottom="50.0dip">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:background="#ffff8c00"/>
+    </LinearLayout>
+
+
+
+        　　　　
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:padding="5dp"
+            android:layout_marginTop="-35dip"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_manage_source"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="书源管理"
+
+                android:textColor="@color/tv_text_default"
+                android:textSize="14sp" />
+
+            <TextView
+                    android:id="@+id/tv_cancel"
+                    android:layout_width="fill_parent"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:text="取消"
+
+                    android:textSize="14sp"
+                    android:textColor="@color/tv_text_default"
+                    />
+
+            <TextView
+                    android:id="@+id/tv_ok"
+                    android:layout_width="fill_parent"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:text="确定"
+
+                    android:textSize="14sp"
+                    android:textColor="@color/tv_text_default"
+                    />
+
+        </LinearLayout>
+
+    </LinearLayout>

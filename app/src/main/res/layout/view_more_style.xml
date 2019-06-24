@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#353535"
+    android:orientation="vertical"
+    android:paddingStart="30dp"
+    android:paddingEnd="30dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_label_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_ib_pre_round"
+            android:clickable="true"
+            android:enabled="false"
+            android:focusable="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="行间距:"
+            android:textColor="#ffffffff"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tv_pre_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_ib_pre_round"
+            android:clickable="true"
+            android:enabled="true"
+            android:focusable="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="-"
+            android:textColor="#ffffffff"
+            android:textSize="18sp" />
+
+        <com.monke.mprogressbar.MHorProgressBar
+            android:id="@+id/hpb_read_progress_1"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            app:bgdrawable="#ffffff"
+            app:cantouch="true"
+            app:cursordrawable="@drawable/shape_progress_cursor_read"
+            app:cursordrawable_height="13dp"
+            app:cursordrawable_width="13dp"
+            app:fontdrawable="#ffffff"
+            app:progresswidth="2dp" />
+
+        <TextView
+            android:id="@+id/tv_next_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_ib_pre_round"
+            android:clickable="true"
+            android:enabled="true"
+            android:focusable="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="+"
+            android:textColor="#ffffffff"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_label_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_ib_pre_round"
+            android:clickable="true"
+            android:enabled="false"
+            android:focusable="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="段间距:"
+            android:textColor="#ffffffff"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tv_pre_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_ib_pre_round"
+            android:clickable="true"
+            android:enabled="true"
+            android:focusable="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="-"
+            android:textColor="#ffffffff"
+            android:textSize="16sp" />
+            
+        <com.monke.mprogressbar.MHorProgressBar
+            android:id="@+id/hpb_read_progress_2"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            app:bgdrawable="#ffffff"
+            app:cantouch="true"
+            app:cursordrawable="@drawable/shape_progress_cursor_read"
+            app:cursordrawable_height="13dp"
+            app:cursordrawable_width="13dp"
+            app:fontdrawable="#ffffff"
+            app:progresswidth="2dp" />
+
+        <TextView
+            android:id="@+id/tv_next_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_ib_pre_round"
+            android:clickable="true"
+            android:enabled="true"
+            android:focusable="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="+"
+            android:textColor="#ffffffff"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_label_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_ib_pre_round"
+            android:clickable="true"
+            android:enabled="true"
+            android:focusable="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="上边距:"
+            android:textColor="#ffffffff"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tv_pre_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_ib_pre_round"
+            android:clickable="true"
+            android:enabled="true"
+            android:focusable="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="-"
+            android:textColor="#ffffffff"
+            android:textSize="16sp" />
+         <com.monke.mprogressbar.MHorProgressBar
+            android:id="@+id/hpb_read_progress_3"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            app:bgdrawable="#ffffff"
+            app:cantouch="true"
+            app:cursordrawable="@drawable/shape_progress_cursor_read"
+            app:cursordrawable_height="13dp"
+            app:cursordrawable_width="13dp"
+            app:fontdrawable="#ffffff"
+            app:progresswidth="2dp" />
+        <TextView
+            android:id="@+id/tv_next_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_ib_pre_round"
+            android:clickable="true"
+            android:enabled="true"
+            android:focusable="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="+"
+            android:textColor="#ffffffff"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_label_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_ib_pre_round"
+            android:clickable="true"
+            android:enabled="true"
+            android:focusable="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="下边距:"
+            android:textColor="#ffffffff"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tv_pre_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_ib_pre_round"
+            android:clickable="true"
+            android:enabled="true"
+            android:focusable="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="-"
+            android:textColor="#ffffffff"
+            android:textSize="16sp" />
+
+         <com.monke.mprogressbar.MHorProgressBar
+            android:id="@+id/hpb_read_progress_4"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            app:bgdrawable="#ffffff"
+            app:cantouch="true"
+            app:cursordrawable="@drawable/shape_progress_cursor_read"
+            app:cursordrawable_height="13dp"
+            app:cursordrawable_width="13dp"
+            app:fontdrawable="#ffffff"
+            app:progresswidth="2dp" />
+        <TextView
+            android:id="@+id/tv_next_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_ib_pre_round"
+            android:clickable="true"
+            android:enabled="true"
+            android:focusable="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="+"
+            android:textColor="#ffffffff"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_label_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_ib_pre_round"
+            android:clickable="true"
+            android:enabled="false"
+            android:focusable="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="左边距:"
+            android:textColor="#ffffffff"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tv_pre_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_ib_pre_round"
+            android:clickable="true"
+            android:enabled="true"
+            android:focusable="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="-"
+            android:textColor="#ffffffff"
+            android:textSize="16sp" />
+
+         <com.monke.mprogressbar.MHorProgressBar
+            android:id="@+id/hpb_read_progress_5"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            app:bgdrawable="#ffffff"
+            app:cantouch="true"
+            app:cursordrawable="@drawable/shape_progress_cursor_read"
+            app:cursordrawable_height="13dp"
+            app:cursordrawable_width="13dp"
+            app:fontdrawable="#ffffff"
+            app:progresswidth="2dp" />
+        <TextView
+            android:id="@+id/tv_next_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_ib_pre_round"
+            android:clickable="true"
+            android:enabled="true"
+            android:focusable="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="+"
+            android:textColor="#ffffffff"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_label_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_ib_pre_round"
+            android:clickable="true"
+            android:enabled="false"
+            android:focusable="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="右边距:"
+            android:textColor="#ffffffff"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tv_pre_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_ib_pre_round"
+            android:clickable="true"
+            android:enabled="true"
+            android:focusable="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="-"
+            android:textColor="#ffffffff"
+            android:textSize="16sp" />
+
+        <com.monke.mprogressbar.MHorProgressBar
+            android:id="@+id/hpb_read_progress_6"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            app:bgdrawable="#ffffff"
+            app:cantouch="true"
+            app:cursordrawable="@drawable/shape_progress_cursor_read"
+            app:cursordrawable_height="13dp"
+            app:cursordrawable_width="13dp"
+            app:fontdrawable="#ffffff"
+            app:progresswidth="2dp" />
+            
+        <TextView
+            android:id="@+id/tv_next_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_ib_pre_round"
+            android:clickable="true"
+            android:enabled="true"
+            android:focusable="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="+"
+            android:textColor="#ffffffff"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</LinearLayout>

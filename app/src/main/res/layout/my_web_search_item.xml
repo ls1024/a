@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:id="@+id/fl_content"
+    android:background="@drawable/selector_search_item"
+    android:padding="12.0dip"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20px"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@+id/cover"
+        android:background="#ffeeeeee"
+        android:layout_width="70.0dip"
+        android:src="@drawable/img_cover_default"
+        android:layout_height="100.0dip" />
+    <LinearLayout android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="14.0dip"
+        android:layout_weight="5.0">
+        <TextView android:textSize="15.0sp"
+            android:textColor="@color/tv_text_search_title"
+            android:id="@+id/title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0.0dip"
+            android:text="" android:maxLines="2" />
+        <LinearLayout android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6.0dip">
+            <ImageView android:layout_gravity="center"
+                android:layout_width="14.0dip"
+                android:layout_height="14.0dip"
+                android:layout_marginRight="4.0dip"
+                android:src="@drawable/icon_author" />
+            <TextView android:textSize="12.0sp"
+                android:textColor="@color/tv_text_search_author"
+                android:layout_gravity="center"
+                android:id="@+id/author"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+        <TextView android:textSize="12.0sp"
+            android:textColor="@color/tv_text_search_description"
+            android:ellipsize="end"
+            android:id="@+id/description"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4.0dip"
+            android:text=""
+            android:maxLines="2" />
+        <TextView android:textSize="10.0sp"
+            android:textColor="@color/tv_text_search_sources"
+            android:ellipsize="end"
+            android:id="@+id/sources"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3.0dip"
+            android:text="来源："
+            android:maxLines="4" />
+    </LinearLayout>
+</LinearLayout>

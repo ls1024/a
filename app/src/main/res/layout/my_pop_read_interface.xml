@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    android:background="#353535"
+    android:clickable="true"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout android:paddingLeft="12.0dip"
+        android:paddingRight="12.0dip"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18.0dip"
+        android:background="#353535"
+        android:layout_marginBottom="0.0dip">
+
+        <FrameLayout
+            android:id="@+id/fl_smaller"
+
+            android:layout_width="fill_parent"
+            android:layout_height="32.0dip"
+            android:layout_marginLeft="0.0dip"
+            android:layout_marginTop="4.0dip"
+            android:layout_marginRight="0.0dip"
+            android:layout_marginBottom="4.0dip"
+
+            android:layout_weight="55.0"
+            android:background="@drawable/selector_pop_font_bg">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A-"
+                android:layout_gravity="center"
+                android:textColor="#ffbbbbbb"
+                android:textSize="14.0dip"/>
+        </FrameLayout>
+
+
+
+        <TextView android:textColor="#ffbbbbbb"
+            android:gravity="center"
+            android:id="@+id/tv_dur_textsize"
+            android:layout_marginLeft="0.0dip"
+            android:layout_marginRight="0.0dip"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="18"
+            android:layout_weight="58.0" />
+
+        <FrameLayout
+            android:id="@+id/fl_bigger"
+
+            android:layout_width="fill_parent"
+            android:layout_height="32.0dip"
+            android:layout_marginLeft="0.0dip"
+            android:layout_marginTop="4.0dip"
+            android:layout_marginRight="6.0dip"
+            android:layout_marginBottom="4.0dip"
+            android:layout_weight="55.0"
+            android:background="@drawable/selector_pop_font_bg">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A+"
+                android:layout_gravity="center"
+                android:textColor="#ffbbbbbb"
+                android:textSize="14.0dip"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_bold_smaller"
+
+            android:layout_width="fill_parent"
+            android:layout_height="32.0dip"
+            android:layout_marginLeft="10.0dip"
+            android:layout_marginTop="4.0dip"
+            android:layout_marginRight="0.0dip"
+            android:layout_marginBottom="4.0dip"
+
+            android:layout_weight="55.0"
+            android:background="@drawable/selector_pop_font_bg">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="粗-"
+                android:layout_gravity="center"
+                android:textColor="#ffbbbbbb"
+                android:textSize="14.0dip"/>
+        </FrameLayout>
+
+
+
+        <TextView android:textColor="#ffbbbbbb"
+            android:gravity="center"
+            android:id="@+id/tv_dur_bold_size"
+            android:layout_marginLeft="0.0dip"
+            android:layout_marginRight="0.0dip"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="0"
+            android:layout_weight="58.0" />
+
+        <FrameLayout
+            android:id="@+id/fl_bold_bigger"
+
+            android:layout_width="fill_parent"
+            android:layout_height="32.0dip"
+            android:layout_marginLeft="2.0dip"
+            android:layout_marginTop="4.0dip"
+            android:layout_marginRight="2.0dip"
+            android:layout_marginBottom="4.0dip"
+            android:layout_weight="55.0"
+            android:background="@drawable/selector_pop_font_bg">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="粗+"
+                android:layout_gravity="center"
+                android:textColor="#ffbbbbbb"
+                android:textSize="14.0dip"/>
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:id="@+id/fl_moreFont"
+
+
+
+            android:paddingLeft="4.0dip"
+            android:paddingRight="4.0dip"
+            android:layout_width="fill_parent"
+            android:layout_height="32.0dip"
+            android:layout_marginLeft="14.0dip"
+            android:layout_marginTop="4.0dip"
+            android:layout_marginBottom="4.0dip"
+            android:layout_marginRight="4.0dip"
+            android:layout_weight="45.0"
+            android:background="@drawable/selector_pop_font_bg">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="自定义字体"
+                android:layout_gravity="center"
+                android:textColor="#ffbbbbbb"
+                android:textSize="14.0dip"/>
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <LinearLayout android:paddingLeft="12.0dip" android:paddingRight="12.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="18.0dip" android:layout_marginBottom="0.0dip">
+        <FrameLayout
+            android:id="@+id/fl_space1"
+            android:paddingLeft="4.0dip"
+            android:paddingRight="4.0dip"
+            android:layout_width="fill_parent"
+            android:layout_height="32.0dip"
+            android:layout_marginLeft="14.0dip"
+            android:layout_marginTop="4.0dip"
+            android:layout_marginBottom="4.0dip"
+            android:layout_marginRight="4.0dip"
+            android:layout_weight="50.0"
+            android:background="@drawable/selector_pop_font_bg">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="36sp"
+                android:layout_height="36sp"
+                android:layout_gravity="center"
+                android:contentDescription=""
+                android:paddingRight="2dp"
+                android:src="@drawable/b4_space1"
+                app:tint="@color/tv_text_book_detail"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_space2"
+            android:paddingLeft="4.0dip"
+            android:paddingRight="4.0dip"
+            android:layout_width="fill_parent"
+            android:layout_height="32.0dip"
+            android:layout_marginLeft="14.0dip"
+            android:layout_marginTop="4.0dip"
+            android:layout_marginBottom="4.0dip"
+            android:layout_marginRight="4.0dip"
+            android:layout_weight="50.0"
+            android:background="@drawable/selector_pop_font_bg">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="36sp"
+                android:layout_height="36sp"
+                android:layout_gravity="center"
+                android:contentDescription=""
+                android:paddingRight="2dp"
+                android:src="@drawable/b4_space2"
+                app:tint="@color/tv_text_book_detail"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_space3"
+            android:paddingLeft="4.0dip"
+            android:paddingRight="4.0dip"
+            android:layout_width="fill_parent"
+            android:layout_height="32.0dip"
+            android:layout_marginLeft="14.0dip"
+            android:layout_marginTop="4.0dip"
+            android:layout_marginBottom="4.0dip"
+            android:layout_marginRight="4.0dip"
+            android:layout_weight="50.0"
+            android:background="@drawable/selector_pop_font_bg">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="36sp"
+                android:layout_height="36sp"
+                android:layout_gravity="center"
+                android:contentDescription=""
+                android:paddingRight="2dp"
+                android:src="@drawable/b4_space3"
+                app:tint="@color/tv_text_book_detail"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_space_none"
+            android:paddingLeft="4.0dip"
+            android:paddingRight="4.0dip"
+            android:layout_width="fill_parent"
+            android:layout_height="32.0dip"
+            android:layout_marginLeft="14.0dip"
+            android:layout_marginTop="4.0dip"
+            android:layout_marginBottom="4.0dip"
+            android:layout_marginRight="4.0dip"
+            android:layout_weight="50.0"
+            android:background="@drawable/selector_pop_font_bg">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="无"
+                android:layout_gravity="center"
+                android:textColor="#ffbbbbbb"
+                android:textSize="14.0dip"/>
+
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:id="@+id/fl_moreStyle"
+
+
+
+            android:paddingLeft="4.0dip"
+            android:paddingRight="4.0dip"
+            android:layout_width="fill_parent"
+            android:layout_height="32.0dip"
+            android:layout_marginLeft="14.0dip"
+            android:layout_marginTop="4.0dip"
+            android:layout_marginBottom="4.0dip"
+            android:layout_marginRight="4.0dip"
+            android:layout_weight="40.0"
+            android:background="@drawable/selector_pop_font_bg">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="自定义排版"
+                android:layout_gravity="center"
+                android:textColor="#ffbbbbbb"
+                android:textSize="14.0dip"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <LinearLayout android:paddingLeft="12.0dip"
+        android:paddingRight="12.0dip"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18.0dip"
+        android:layout_marginBottom="0.0dip">
+
+
+        <RelativeLayout
+            android:id="@+id/fl_bg_0"
+            android:layout_width="match_parent"
+            android:layout_height="32.0dip"
+            android:layout_marginLeft="4.0dip"
+            android:layout_marginTop="4.0dip"
+            android:layout_marginBottom="4.0dip"
+            android:layout_gravity="center"
+            android:layout_marginRight="4.0dip"
+            android:layout_weight="50.0"
+            android:background="@drawable/selector_pop_font_bg">
+        >
+            <com.kunfei.bookshelf.widget.CustomRoundAngleImageView
+                android:id="@+id/civ_0"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:scaleType="centerCrop"
+                android:layout_centerInParent="true"
+                android:src="@color/background_menu"
+                android:transitionName="img_cover"
+                tools:ignore="UnusedAttribute" />
+
+            <TextView
+                android:id="@+id/tv_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text"
+                android:layout_gravity="center"
+                android:layout_centerInParent="true"
+                android:textColor="@color/tv_text_default"
+                android:textSize="14.0dip"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/fl_bg_1"
+            android:layout_width="match_parent"
+            android:layout_height="32.0dip"
+            android:layout_marginLeft="4.0dip"
+            android:layout_marginTop="4.0dip"
+            android:layout_marginBottom="4.0dip"
+            android:layout_gravity="center"
+            android:layout_marginRight="4.0dip"
+            android:layout_weight="50.0"
+            android:background="@drawable/selector_pop_font_bg"
+            >
+            <com.kunfei.bookshelf.widget.CustomRoundAngleImageView
+                android:id="@+id/civ_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:scaleType="centerCrop"
+                android:layout_centerInParent="true"
+                android:src="@color/background_menu"
+                android:transitionName="img_cover"
+                tools:ignore="UnusedAttribute" />
+
+            <TextView
+                android:id="@+id/tv_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text"
+                android:layout_gravity="center"
+                android:layout_centerInParent="true"
+                android:textColor="@color/tv_text_default"
+                android:textSize="14.0dip"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/fl_bg_2"
+            android:layout_width="match_parent"
+            android:layout_height="32.0dip"
+            android:layout_marginLeft="4.0dip"
+            android:layout_marginTop="4.0dip"
+            android:layout_marginBottom="4.0dip"
+            android:layout_gravity="center"
+            android:layout_marginRight="4.0dip"
+            android:layout_weight="50.0"
+            android:background="@drawable/selector_pop_font_bg"
+            >
+            <com.kunfei.bookshelf.widget.CustomRoundAngleImageView
+                android:id="@+id/civ_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:scaleType="centerCrop"
+                android:layout_centerInParent="true"
+                android:src="@color/background_menu"
+                android:transitionName="img_cover"
+                tools:ignore="UnusedAttribute" />
+
+            <TextView
+                android:id="@+id/tv_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text"
+                android:layout_gravity="center"
+                android:layout_centerInParent="true"
+                android:textColor="@color/tv_text_default"
+                android:textSize="14.0dip"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/fl_bg_3"
+            android:layout_width="match_parent"
+            android:layout_height="32.0dip"
+            android:layout_marginLeft="4.0dip"
+            android:layout_marginTop="4.0dip"
+            android:layout_marginBottom="4.0dip"
+            android:layout_gravity="center"
+            android:layout_marginRight="4.0dip"
+            android:layout_weight="50.0"
+            android:background="@drawable/selector_pop_font_bg"
+            >
+            <com.kunfei.bookshelf.widget.CustomRoundAngleImageView
+                android:id="@+id/civ_3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:scaleType="centerCrop"
+                android:layout_centerInParent="true"
+                android:src="@color/background_menu"
+                android:transitionName="img_cover"
+                tools:ignore="UnusedAttribute" />
+
+            <TextView
+                android:id="@+id/tv_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text"
+                android:layout_gravity="center"
+                android:layout_centerInParent="true"
+                android:textColor="@color/tv_text_default"
+                android:textSize="14.0dip"/>
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_moreColor"
+
+
+            android:paddingLeft="4.0dip"
+            android:paddingRight="4.0dip"
+            android:layout_width="fill_parent"
+            android:layout_height="32.0dip"
+            android:layout_marginLeft="14.0dip"
+            android:layout_marginTop="4.0dip"
+            android:layout_marginBottom="4.0dip"
+            android:layout_marginRight="4.0dip"
+            android:layout_weight="40.0"
+            android:background="@drawable/selector_pop_font_bg">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="自定义配色"
+                android:layout_gravity="center"
+                android:textColor="#ffbbbbbb"
+                android:textSize="14.0dip"/>
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <LinearLayout android:paddingLeft="12.0dip" android:paddingRight="12.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="18.0dip" android:layout_marginBottom="15.0dip">
+        <FrameLayout
+            android:id="@+id/fl_page1"
+            android:paddingLeft="4.0dip"
+            android:paddingRight="4.0dip"
+            android:layout_width="fill_parent"
+            android:layout_height="32.0dip"
+            android:layout_marginLeft="4.0dip"
+            android:layout_marginTop="4.0dip"
+            android:layout_marginBottom="4.0dip"
+            android:layout_marginRight="4.0dip"
+            android:layout_weight="50.0"
+            android:background="@drawable/selector_pop_font_bg">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="覆盖翻页"
+                android:layout_gravity="center"
+                android:textColor="#ffbbbbbb"
+                android:textSize="14.0dip"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_page2"
+            android:paddingLeft="4.0dip"
+            android:paddingRight="4.0dip"
+            android:layout_width="fill_parent"
+            android:layout_height="32.0dip"
+            android:layout_marginLeft="4.0dip"
+            android:layout_marginTop="4.0dip"
+            android:layout_marginBottom="4.0dip"
+            android:layout_marginRight="4.0dip"
+            android:layout_weight="50.0"
+            android:background="@drawable/selector_pop_font_bg">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="仿真翻页"
+                android:layout_gravity="center"
+                android:textColor="#ffbbbbbb"
+                android:textSize="14.0dip"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_page3"
+            android:paddingLeft="4.0dip"
+            android:paddingRight="4.0dip"
+            android:layout_width="fill_parent"
+            android:layout_height="32.0dip"
+            android:layout_marginLeft="4.0dip"
+            android:layout_marginTop="4.0dip"
+            android:layout_marginBottom="4.0dip"
+            android:layout_marginRight="4.0dip"
+            android:layout_weight="50.0"
+            android:background="@drawable/selector_pop_font_bg">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="滑动翻页"
+                android:layout_gravity="center"
+                android:textColor="#ffbbbbbb"
+                android:textSize="14.0dip"/>
+
+        </FrameLayout>
+
+
+
+
+        <FrameLayout
+            android:id="@+id/fl_morePage"
+
+
+
+            android:paddingLeft="4.0dip"
+            android:paddingRight="4.0dip"
+            android:layout_width="fill_parent"
+            android:layout_height="32.0dip"
+            android:layout_marginLeft="4.0dip"
+            android:layout_marginTop="4.0dip"
+            android:layout_marginBottom="4.0dip"
+            android:layout_marginRight="4.0dip"
+            android:layout_weight="45.0"
+            android:background="@drawable/selector_pop_font_bg">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="自定义翻页"
+                android:layout_gravity="center"
+                android:textColor="#ffbbbbbb"
+                android:textSize="14.0dip"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

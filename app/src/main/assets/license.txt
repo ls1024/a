@@ -1,0 +1,25 @@
+
+MONKOVEL - https://github.com/ZhangQinhao/MONKOVEL
+
+阅读 - https://github.com/gedoor/MyBookshelf
+
+魔改阅读 - https://github.com/Invinciblelee/MyBookshelf-master
+
+Glide - https://github.com/bumptech/glide
+
+Jsoup - http://jsoup.org/Jsoup
+
+JsoupXpath - https://github.com/zhegexiaohuozi/JsoupXpath
+
+GreenDao
+
+epublib
+
+floatingsearchview
+
+jsonpath
+
+zxing
+
+
+。。。。

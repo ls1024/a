@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15.0dip"
+    android:layout_marginLeft="2.0dip"
+    android:layout_marginRight="2.0dip"
+    android:layout_marginBottom="5dip"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="2dp">
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <com.kunfei.bookshelf.widget.CoverCardView
+            android:id="@+id/cardView"
+            style="@style/AppTheme.CardView.Image"
+            android:layout_marginBottom="@dimen/half_card_item_margin"
+            android:layout_width="92.0dip"
+            android:layout_height="130.0dip">
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                >
+            <com.kunfei.bookshelf.widget.CoverImageView
+                android:id="@+id/iv_cover"
+                android:layout_width="92dp"
+                android:layout_height="130dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_cover_default"
+                android:transitionName="img_cover"
+                tools:ignore="UnusedAttribute" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_name_on_pic"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:textSize="13.0sp"
+                    android:ellipsize="end"
+                    android:textColor="#000000"
+                    />
+            </FrameLayout>
+            <com.monke.mprogressbar.MHorProgressBar
+                android:id="@+id/mpb_durprogress"
+                android:layout_width="match_parent"
+                android:layout_gravity="bottom"
+                android:layout_height="3dp"
+                app:fontdrawable="#ffff8c00"
+                app:cantouch="false"
+                app:bgdrawable="#e7eced"
+                android:visibility="invisible"/>
+        </com.kunfei.bookshelf.widget.CoverCardView>
+
+        <com.kunfei.bookshelf.widget.BadgeView
+            android:id="@+id/bv_unread"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_margin="5dp"
+            android:elevation="8dp"
+            android:includeFontPadding="false"
+            tools:ignore="RtlHardcoded" />
+
+        <com.victor.loading.rotate.RotateLoading
+            android:id="@+id/rl_loading"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_gravity="right"
+            android:visibility="invisible"
+            app:loading_color="@color/colorAccent"
+            android:elevation="8dp"
+            app:loading_width="2dp"
+            tools:ignore="RtlHardcoded" />
+
+
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:text="这是书名，应该自动黄行"
+        android:textSize="13.0sp"
+        android:ellipsize="end"
+        android:gravity="center|top"
+        android:paddingLeft="6.0dip"
+        android:paddingTop="6.0dip"
+        android:paddingRight="6.0dip"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="8.0dip"
+        android:maxLines="2"
+
+        android:textColor="@color/tv_text_default"
+        />
+
+</LinearLayout>

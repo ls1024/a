@@ -1,0 +1,60 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.activity.MyMainActivity">
+
+    <item android:id="@+id/action_clear_history"
+        android:title="@string/clearHistory"
+        android:icon="@drawable/ic_trash"
+        app:tint="@color/tv_text_default"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_add_local"
+        android:icon="@drawable/ic_add"
+        android:title="@string/book_local"
+        app:tint="@color/tv_text_default"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_add_url"
+        android:icon="@drawable/ic_add_online"
+        app:tint="@color/tv_text_default"
+        android:title="@string/add_book_url"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_download_all"
+        android:icon="@drawable/ic_download_line"
+        app:tint="@color/tv_text_default"
+        android:title="@string/download_all"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_list_grid"
+        android:icon="@drawable/ic_view_quilt"
+        app:tint="@color/tv_text_default"
+        android:title="@string/action_list_grid"
+        app:showAsAction="never" />
+<!--
+    <item
+        android:id="@+id/action_change_icon"
+        android:icon="@drawable/ic_face"
+        android:title="@string/change_icon"
+        app:showAsAction="never" />
+-->
+    <item
+        android:id="@+id/action_clear_cache"
+        android:icon="@drawable/ic_clear_cache"
+        app:tint="@color/tv_text_default"
+        android:title="@string/clear_content"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_clearBookshelf"
+        android:icon="@drawable/ic_clear_all"
+        app:tint="@color/tv_text_default"
+        android:title="@string/clear_bookshelf"
+        app:showAsAction="never" />
+
+</menu>
