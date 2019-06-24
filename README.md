@@ -1,11 +1,15 @@
 # 搜神阅读，功能更强大，界面更好看的"阅读"
 
 # 软件截图
-![image](https://github.com/804463258/a/blob/master/image/1.gif ) 
-![image](https://github.com/804463258/a/blob/master/image/2.gif ) 
-![image](https://github.com/804463258/a/blob/master/image/3.gif ) 
-![image](https://github.com/804463258/a/blob/master/image/4.gif ) 
-![image](https://github.com/804463258/a/blob/master/image/5.gif ) 
+![image](https://github.com/804463258/a/blob/master/image/11.png ) 
+![image](https://github.com/804463258/a/blob/master/image/21.png ) 
+![image](https://github.com/804463258/a/blob/master/image/22.png ) 
+![image](https://github.com/804463258/a/blob/master/image/23.png ) 
+![image](https://github.com/804463258/a/blob/master/image/42.png ) 
+![image](https://github.com/804463258/a/blob/master/image/43.png ) 
+![image](https://github.com/804463258/a/blob/master/image/51.png ) 
+
+
 
 多谢原作者 kunfei 的分享   
 原项目发布于 https://github.com/gedoor/MyBookshelf   
