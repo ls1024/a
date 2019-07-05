@@ -39,10 +39,14 @@ public class FindBookPresenter extends BasePresenterImpl<FindBookContract.View> 
     @Override
     public void initData() {
         if (disposable != null) return;
+
         ACache aCache = ACache.get(mView.getContext(), "findCache");
         Single.create((SingleOnSubscribe<List<RecyclerViewData>>) e -> {
             List<RecyclerViewData> group = new ArrayList<>();
             boolean showAllFind = MApplication.getConfigPreferences().getBoolean("showAllFind", true);
+            boolean showJSFind = MApplication.getConfigPreferences().getBoolean("showJSFind", true);
+
+
             List<BookSourceBean> sourceBeans = new ArrayList<>(showAllFind ? BookSourceManager.getAllBookSourceBySerialNumber() : BookSourceManager.getSelectedBookSourceBySerialNumber());
             for (BookSourceBean sourceBean : sourceBeans) {
                 try {
@@ -50,7 +54,7 @@ public class FindBookPresenter extends BasePresenterImpl<FindBookContract.View> 
                     String findRule;
                     if (!TextUtils.isEmpty(sourceBean.getRuleFindUrl())) {
                         boolean isJsAndCache = sourceBean.getRuleFindUrl().startsWith("<js>");
-                        if (isJsAndCache) {
+                        if (isJsAndCache && showJSFind) {
                             findRule = aCache.getAsString(sourceBean.getBookSourceUrl());
                             if (TextUtils.isEmpty(findRule)) {
                                 String jsStr = sourceBean.getRuleFindUrl().substring(4, sourceBean.getRuleFindUrl().lastIndexOf("<"));
@@ -77,7 +81,7 @@ public class FindBookPresenter extends BasePresenterImpl<FindBookContract.View> 
                         groupBean.setGroupName(sourceBean.getBookSourceName());
                         groupBean.setGroupTag(sourceBean.getBookSourceUrl());
                         group.add(new RecyclerViewData(groupBean, children, false));
-                        if (isJsAndCache) {
+                        if (isJsAndCache && showJSFind) {
                             aCache.put(sourceBean.getBookSourceUrl(), findRule);
                         }
                     }

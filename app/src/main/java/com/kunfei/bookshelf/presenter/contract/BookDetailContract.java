@@ -33,6 +33,10 @@ public interface BookDetailContract {
         void removeFromBookShelf();
 
         void changeBookSource(SearchBookBean searchBookBean);
+
+        int hiddenOrShowFromBookShelf(String hidden);
+
+        int getHiddenStatusFromBookShelf();
     }
 
     interface View extends IView {

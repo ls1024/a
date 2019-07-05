@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,7 +34,8 @@ import com.kunfei.bookshelf.help.ItemTouchCallback;
 import com.kunfei.bookshelf.utils.theme.ThemeStore;
 import com.kunfei.bookshelf.view.adapter.base.OnItemClickListenerTwo;
 import com.kunfei.bookshelf.widget.BadgeView;
-import com.kunfei.bookshelf.widget.RotateLoading;
+import com.monke.mprogressbar.MHorProgressBar;
+import com.victor.loading.rotate.RotateLoading;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -147,10 +149,8 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
         if (!activity.isFinishing()) {
             if (TextUtils.isEmpty(bookShelfBean.getCustomCoverPath())) {
                 Glide.with(activity).load(bookInfoBean.getCoverUrl())
-                        .dontAnimate()
-                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                        .centerCrop()
-                        .placeholder(R.drawable.img_cover_default)
+                        .apply(new RequestOptions().dontAnimate().diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                                .centerCrop().placeholder(R.drawable.img_cover_default))
                         .into(holder.ivCover);
             } else if (bookShelfBean.getCustomCoverPath().startsWith("http")) {
                 Glide.with(activity).load(bookShelfBean.getCustomCoverPath())
@@ -172,10 +172,8 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
                         .into(holder.ivCover);
             } else {
                 Glide.with(activity).load(new File(bookShelfBean.getCustomCoverPath()))
-                        .dontAnimate()
-                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                        .centerCrop()
-                        .placeholder(R.drawable.img_cover_default)
+                        .apply(new RequestOptions().dontAnimate().diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                                .centerCrop().placeholder(R.drawable.img_cover_default))
                         .into(holder.ivCover);
             }
         }
@@ -225,6 +223,13 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
             holder.rotateLoading.setVisibility(View.INVISIBLE);
             holder.rotateLoading.stop();
         }
+
+        holder.mpbDurprogress.setVisibility(View.VISIBLE);
+        holder.mpbDurprogress.setMaxProgress(books.get(index).getChapterListSize());
+        float speed = books.get(index).getChapterListSize()*1.0f/100;
+
+        holder.mpbDurprogress.setSpeed(speed<=0?1:speed);
+        holder.mpbDurprogress.setDurProgressWithAnim(books.get(index).getDurChapter());
     }
 
     @Override
@@ -259,7 +264,7 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        ViewGroup flContent;
+        FrameLayout flContent;
         ImageView ivCover;
         BadgeView bvUnread;
         TextView tvName;
@@ -268,6 +273,8 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
         TextView tvLast;
         RotateLoading rotateLoading;
         View vwSelect;
+        MHorProgressBar mpbDurprogress;
+
 
         MyViewHolder(View itemView) {
             super(itemView);
@@ -281,6 +288,8 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
             rotateLoading = itemView.findViewById(R.id.rl_loading);
             rotateLoading.setLoadingColor(ThemeStore.accentColor(itemView.getContext()));
             vwSelect = itemView.findViewById(R.id.vw_select);
+            mpbDurprogress = (MHorProgressBar) itemView.findViewById(R.id.mpb_durprogress);
+
         }
     }
 

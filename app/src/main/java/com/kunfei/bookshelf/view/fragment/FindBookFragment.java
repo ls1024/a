@@ -34,7 +34,6 @@ import com.kunfei.bookshelf.model.BookSourceManager;
 import com.kunfei.bookshelf.presenter.FindBookPresenter;
 import com.kunfei.bookshelf.presenter.contract.FindBookContract;
 import com.kunfei.bookshelf.utils.theme.ThemeStore;
-import com.kunfei.bookshelf.view.activity.ChoiceBookActivity;
 import com.kunfei.bookshelf.view.activity.SourceEditActivity;
 import com.kunfei.bookshelf.view.adapter.FindKindAdapter;
 import com.kunfei.bookshelf.view.adapter.FindLeftAdapter;
@@ -217,12 +216,13 @@ public class FindBookFragment extends MBaseFragment<FindBookContract.Presenter> 
     @Override
     public void onChildItemClick(int position, int groupPosition, int childPosition, View view) {
         FindKindBean kindBean = (FindKindBean) findKindAdapter.getAllDatas().get(groupPosition).getChild(childPosition);
-
+/*
         Intent intent = new Intent(getContext(), ChoiceBookActivity.class);
         intent.putExtra("url", kindBean.getKindUrl());
         intent.putExtra("title", kindBean.getKindName());
         intent.putExtra("tag", kindBean.getTag());
         startActivityByAnim(intent, view, "sharedView", android.R.anim.fade_in, android.R.anim.fade_out);
+        */
     }
 
     @Override

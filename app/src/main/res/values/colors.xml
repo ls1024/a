@@ -13,6 +13,7 @@
     <color name="background_menu">#fcfcfc</color>
     <color name="background_grey">#4E808080</color>
 
+
     <color name="transparent30">#30000000</color>
 
 
@@ -33,6 +34,7 @@
 
     <color name="tv_text_default">#de000000</color>
     <color name="colorTextSecondary">#636363</color>
+
 
     <color name="tv_text_secondary">#b2000000</color>
     <color name="tv_text_book_detail">#dfdfdf</color>
@@ -128,7 +130,6 @@
     <color name="tv_text_replace">#64000000</color>
 
     <color name="tv_text_replace_hint">#FFD4D4D4</color>
-
 
 
 </resources>

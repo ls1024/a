@@ -37,7 +37,7 @@ import com.kunfei.bookshelf.utils.RxUtils;
 import com.kunfei.bookshelf.utils.theme.ATH;
 import com.kunfei.bookshelf.utils.theme.ThemeStore;
 import com.kunfei.bookshelf.view.activity.BookDetailActivity;
-import com.kunfei.bookshelf.view.activity.ReadBookActivity;
+import com.kunfei.bookshelf.view.activity.MyReadBookActivity;
 import com.kunfei.bookshelf.view.adapter.BookShelfAdapter;
 import com.kunfei.bookshelf.view.adapter.BookShelfGridAdapter;
 import com.kunfei.bookshelf.view.adapter.BookShelfListAdapter;
@@ -181,7 +181,7 @@ public class BookListFragment extends MBaseFragment<BookListContract.Presenter> 
                     return;
                 }
                 BookShelfBean bookShelfBean = bookShelfAdapter.getBooks().get(index);
-                Intent intent = new Intent(getContext(), ReadBookActivity.class);
+                Intent intent = new Intent(getContext(), MyReadBookActivity.class);
                 intent.putExtra("openFrom", ReadBookPresenter.OPEN_FROM_APP);
                 String key = String.valueOf(System.currentTimeMillis());
                 String bookKey = "book" + key;

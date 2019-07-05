@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.kunfei.bookshelf.widget.page.PageLoader.DEFAULT_MARGIN_WIDTH;
+import static com.kunfei.bookshelf.widget.my_page.PageLoader.DEFAULT_MARGIN_WIDTH;
 
 public class ReadBookControl {
     private static final int DEFAULT_BG = 1;
@@ -29,6 +29,7 @@ public class ReadBookControl {
     private List<Map<String, Integer>> textDrawable;
     private Bitmap bgBitmap;
     private int screenDirection;
+    private int progressDisplay;
     private int speechRate;
     private boolean speechRateFollowSys;
     private int textSize;
@@ -64,6 +65,10 @@ public class ReadBookControl {
     private int tipPaddingRight;
     private int tipPaddingBottom;
     private float textLetterSpacing;
+    private float boldSize;
+    private int styleDefault;
+    private Boolean noPicSearch;
+    private  int speechPitch;
 
     private SharedPreferences preferences;
 
@@ -87,18 +92,18 @@ public class ReadBookControl {
     }
 
     void updateReaderSettings() {
-        this.hideStatusBar = preferences.getBoolean("hide_status_bar", false);
-        this.hideNavigationBar = preferences.getBoolean("hide_navigation_bar", false);
+        this.hideStatusBar = preferences.getBoolean("hide_status_bar", false);//顶部信号，电池，时间等信息
+        this.hideNavigationBar = preferences.getBoolean("hide_navigation_bar", true);//控制底部三个按钮是否在看书时显示，默认为不显示
         this.indent = preferences.getInt("indent", 2);
         this.textSize = preferences.getInt("textSize", 20);
         this.canClickTurn = preferences.getBoolean("canClickTurn", true);
         this.canKeyTurn = preferences.getBoolean("canKeyTurn", true);
         this.readAloudCanKeyTurn = preferences.getBoolean("readAloudCanKeyTurn", false);
-        this.lineMultiplier = preferences.getFloat("lineMultiplier", 1);
-        this.paragraphSize = preferences.getFloat("paragraphSize", 1);
+        this.lineMultiplier = preferences.getFloat("lineMultiplier", 1);//行间距
+        this.paragraphSize = preferences.getFloat("paragraphSize", 2);//看书时的段间距
         this.clickSensitivity = preferences.getInt("clickSensitivity", 50) > 100
                 ? 50 : preferences.getInt("clickSensitivity", 50);
-        this.clickAllNext = preferences.getBoolean("clickAllNext", false);
+        this.clickAllNext = preferences.getBoolean("clickAllNext", false);//点击时总是到下一页
         this.fontPath = preferences.getString("fontPath", null);
         this.textConvert = preferences.getInt("textConvertInt", 0);
         this.textBold = preferences.getBoolean("textBold", false);
@@ -106,7 +111,7 @@ public class ReadBookControl {
         this.speechRateFollowSys = preferences.getBoolean("speechRateFollowSys", true);
         this.showTitle = preferences.getBoolean("showTitle", true);
         this.showTimeBattery = preferences.getBoolean("showTimeBattery", true);
-        this.showLine = preferences.getBoolean("showLine", true);
+        this.showLine = preferences.getBoolean("showLine", false);
         this.screenTimeOut = preferences.getInt("screenTimeOut", 0);
         this.paddingLeft = preferences.getInt("paddingLeft", DEFAULT_MARGIN_WIDTH);
         this.paddingTop = preferences.getInt("paddingTop", 0);
@@ -120,6 +125,13 @@ public class ReadBookControl {
         this.screenDirection = preferences.getInt("screenDirection", 0);
         this.navBarColor = preferences.getInt("navBarColorInt", 0);
         this.textLetterSpacing = preferences.getFloat("textLetterSpacing", 0);
+        this.boldSize = preferences.getFloat("boldSize", 0);
+        this.styleDefault = preferences.getInt("styleDefault", 1);
+        this.progressDisplay = preferences.getInt("progressDisplay", 0);
+
+        this.noPicSearch = preferences.getBoolean("noPicSearch", false);
+        this.speechPitch = preferences.getInt("speechPitch", 10);
+
 
         initTextDrawableIndex();
     }
@@ -204,6 +216,34 @@ public class ReadBookControl {
         darkStatusIcon = getDarkStatusIcon(textDrawableIndex);
         textColor = getTextColor(textDrawableIndex);
     }
+
+    public Boolean getNoPicSearch() {
+        return preferences.getBoolean("noPicSearch",false);
+    }
+
+    public void setNoPicSearch(Boolean noPicSearch) {
+
+        this.noPicSearch = noPicSearch;
+        preferences.edit()
+                .putBoolean("noPicSearch", noPicSearch)
+                .apply();
+
+    }
+
+    public int getSpeechPitch() {
+        return preferences.getInt("speechPitch",10);
+    }
+
+    public void setSpeechPitch(int speechPitch) {
+
+        this.speechPitch = speechPitch;
+        preferences.edit()
+                .putInt("speechPitch", speechPitch)
+                .apply();
+
+    }
+
+
 
     public int getTextColor(int textDrawableIndex) {
         if (preferences.getInt("textColor" + textDrawableIndex, 0) != 0) {
@@ -322,6 +362,17 @@ public class ReadBookControl {
         preferences.edit()
                 .putInt("textSize", textSize)
                 .apply();
+    }
+
+    public float getBoldSize() {
+        return boldSize;
+    }
+
+    public void setBoldSize(float boldSize) {
+        this.boldSize = boldSize;
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putFloat("boldSize", boldSize);
+        editor.apply();
     }
 
     public int getTextColor() {
@@ -648,6 +699,18 @@ public class ReadBookControl {
                 .apply();
     }
 
+
+    public int getProgressDisplay() {
+        return progressDisplay;
+    }
+
+    public void setProgressDisplay(int progressDisplay) {
+        this.progressDisplay = progressDisplay;
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("progressDisplay", progressDisplay);
+        editor.apply();
+    }
+
     public int getPaddingBottom() {
         return paddingBottom;
     }
@@ -771,5 +834,17 @@ public class ReadBookControl {
 
     public boolean disableScrollClickTurn() {
         return preferences.getBoolean("disableScrollClickTurn", false);
+    }
+
+
+    public int getStyleDefault() {
+        return styleDefault;
+    }
+
+    public void setStyleDefault(int styleDefault) {
+        this.styleDefault = styleDefault;
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("styleDefault", styleDefault);
+        editor.apply();
     }
 }

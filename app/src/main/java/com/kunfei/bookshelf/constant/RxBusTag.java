@@ -16,6 +16,8 @@ public class RxBusTag {
     public final static String CHECK_SOURCE_FINISH = "checkSourceFinish";
     public final static String IMMERSION_CHANGE = "Immersion_Change";
     public final static String SEARCH_BOOK = "search_book";
+    public final static String SEARCH_BOOK_WITH_AUTHOR = "search_book_with_author";
+    public final static String SEARCH_BOOK_WITH_KEYWORD = "search_book_with_keyword";
     public final static String UPDATE_APK_STATE = "updateApkState";
     public final static String DOWNLOAD_ALL = "downloadAll";
     public final static String UP_SEARCH_BOOK = "upSearchBook";
@@ -27,4 +29,14 @@ public class RxBusTag {
     public final static String PRINT_DEBUG_LOG = "printDebugLog";
     public final static String AUDIO_SIZE = "audioSize";
     public final static String AUDIO_DUR = "audioDur";
+
+    //my
+    public final static String HAD_HIDDEN_BOOK = "hidden_book";
+    public final static String UPDATE_BOOK_SOURCE = "updateBookSource";
+    public final static String SOURCE_LIST_CHANGE = "sourceListChange";
+    public final static String UPDATE_PX = "update_px";
+    public final static String UPDATE_UI = "update_ui";
+
+
+
 }

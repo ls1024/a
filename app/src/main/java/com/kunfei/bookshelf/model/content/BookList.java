@@ -6,6 +6,7 @@ import com.kunfei.bookshelf.MApplication;
 import com.kunfei.bookshelf.R;
 import com.kunfei.bookshelf.bean.BookSourceBean;
 import com.kunfei.bookshelf.bean.SearchBookBean;
+import com.kunfei.bookshelf.bean.SearcheBookHitBean;
 import com.kunfei.bookshelf.model.analyzeRule.AnalyzeRule;
 import com.kunfei.bookshelf.utils.NetworkUtils;
 import com.kunfei.bookshelf.utils.StringUtils;
@@ -67,6 +68,13 @@ class BookList {
                 SearchBookBean item = getItem(analyzer, baseUrl);
                 if (item != null) {
                     item.setBookInfoHtml(body);
+                    //对于多个源的书籍的处理 begin
+                    SearcheBookHitBean hit = new SearcheBookHitBean();
+                    hit.setBookSourceName(bookSourceBean.getBookSourceName());
+                    hit.setTag(tag);
+                    hit.setNoteUrl(item.getNoteUrl());
+                    item.getHitList().add(hit);
+                    //对于多个源的书籍的处理 end
                     books.add(item);
                 }
             } else {
@@ -92,11 +100,18 @@ class BookList {
                     //获取列表
                     Debug.printLog(tag, "┌解析搜索列表");
                     collections = analyzer.getElements(ruleList);
-                    if (collections.size() == 0 && isEmpty(bookSourceBean.getRuleBookUrlPattern())) {
+                    if (collections.size() == 0  && isEmpty(bookSourceBean.getRuleBookUrlPattern())) {
                         Debug.printLog(tag, "└搜索列表为空,当做详情页处理");
                         SearchBookBean item = getItem(analyzer, baseUrl);
                         if (item != null) {
                             item.setBookInfoHtml(body);
+                            //对于多个源的书籍的处理 begin
+                            SearcheBookHitBean hit = new SearcheBookHitBean();
+                            hit.setBookSourceName(bookSourceBean.getBookSourceName());
+                            hit.setTag(tag);
+                            hit.setNoteUrl(item.getNoteUrl());
+                            item.getHitList().add(hit);
+                            //对于多个源的书籍的处理 end
                             books.add(item);
                         }
                     } else {
@@ -110,6 +125,13 @@ class BookList {
                                     if (baseUrl.equals(item.getNoteUrl())) {
                                         item.setBookInfoHtml(body);
                                     }
+                                    //对于多个源的书籍的处理 begin
+                                    SearcheBookHitBean hit = new SearcheBookHitBean();
+                                    hit.setBookSourceName(bookSourceBean.getBookSourceName());
+                                    hit.setTag(tag);
+                                    hit.setNoteUrl(item.getNoteUrl());
+                                    item.getHitList().add(hit);
+                                    //对于多个源的书籍的处理 end
                                     books.add(item);
                                 }
                             }
@@ -123,6 +145,13 @@ class BookList {
                                     if (baseUrl.equals(item.getNoteUrl())) {
                                         item.setBookInfoHtml(body);
                                     }
+                                    //对于多个源的书籍的处理 begin
+                                    SearcheBookHitBean hit = new SearcheBookHitBean();
+                                    hit.setBookSourceName(bookSourceBean.getBookSourceName());
+                                    hit.setTag(tag);
+                                    hit.setNoteUrl(item.getNoteUrl());
+                                    item.getHitList().add(hit);
+                                    //对于多个源的书籍的处理 end
                                     books.add(item);
                                 }
                             }
@@ -279,7 +308,19 @@ class BookList {
             SearchBookBean bookBean = new SearchBookBean();
             bookBean.setNoteUrl(baseUrl);
             bookBean.setBookInfoHtml(res);
+
+            //对于多个源的书籍的处理 begin
+            SearcheBookHitBean hit = new SearcheBookHitBean();
+            hit.setBookSourceName(bookSourceBean.getBookSourceName());
+            hit.setTag(tag);
+            hit.setNoteUrl(bookBean.getNoteUrl());
+            bookBean.getHitList().add(hit);
+            //对于多个源的书籍的处理 end
+
             books.add(bookBean);
+
+
+
             return books;
         }
         // 判断索引的规则是最后一个规则
@@ -339,6 +380,15 @@ class BookList {
                         NetworkUtils.getAbsoluteURL(baseUrl, infoList[5]), // 保存封面
                         infoList[6]  // 保存详情
                 );
+
+                //对于多个源的书籍的处理 begin
+                SearcheBookHitBean hit = new SearcheBookHitBean();
+                hit.setBookSourceName(bookSourceBean.getBookSourceName());
+                hit.setTag(tag);
+                hit.setNoteUrl(item.getNoteUrl());
+                item.getHitList().add(hit);
+                //对于多个源的书籍的处理 end
+
                 books.add(item);
                 // 判断搜索结果是否为详情页
                 if (books.size() == 1 && (isEmpty(infoList[6]) || infoList[6].equals(baseUrl))) {

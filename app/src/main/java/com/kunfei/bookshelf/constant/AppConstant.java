@@ -11,8 +11,6 @@ import java.util.regex.Pattern;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
-import okhttp3.MediaType;
-
 public class AppConstant {
 
     public static final String ActionStartService = "startService";
@@ -21,6 +19,9 @@ public class AppConstant {
     //Book Date Convert Format
     public static final String FORMAT_TIME = "HH:mm";
     public static final String FORMAT_FILE_DATE = "yyyy-MM-dd";
+    public static final int MIN_CLICK_INTERVAL = 600;
+
+
     //BookCachePath (因为getCachePath引用了Context，所以必须是静态变量，不能够是静态常量)
     public static String BOOK_CACHE_PATH = MApplication.downloadPath + File.separator + "book_cache" + File.separator;
 
@@ -34,5 +35,4 @@ public class AppConstant {
 
     public static final ScriptEngine SCRIPT_ENGINE = new ScriptEngineManager().getEngineByName("rhino");
 
-    public static final MediaType jsonMediaType = MediaType.parse("Content-Type, application/json");
 }

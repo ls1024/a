@@ -10,8 +10,10 @@ import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Transient;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 
 import static com.kunfei.bookshelf.constant.AppConstant.MAP_STRING;
@@ -48,11 +50,14 @@ public class SearchBookBean implements BaseBookBean {
     @Transient
     private String bookInfoHtml;
 
-    public SearchBookBean() {
+    @Transient
+    private List<SearcheBookHitBean> hitList = new ArrayList<SearcheBookHitBean>();//搜索命中情况
+
+    public SearchBookBean(){
 
     }
 
-    public SearchBookBean(String tag, String origin) {
+    public SearchBookBean(String tag, String origin){
         this.tag = tag;
         this.origin = origin;
     }
@@ -138,7 +143,7 @@ public class SearchBookBean implements BaseBookBean {
     }
 
     public String getLastChapter() {
-        return lastChapter == null ? "" : lastChapter;
+        return lastChapter==null?"":lastChapter;
     }
 
     public void setLastChapter(String lastChapter) {
@@ -257,7 +262,7 @@ public class SearchBookBean implements BaseBookBean {
 
     // 一次性存入搜索书籍节点信息
     public void setSearchInfo(String name, String author, String kind, String lastChapter,
-                              String introduce, String coverUrl, String noteUrl) {
+                              String introduce, String coverUrl, String noteUrl){
         this.name = name;
         this.author = author;
         this.kind = kind;
@@ -265,5 +270,13 @@ public class SearchBookBean implements BaseBookBean {
         this.introduce = introduce;
         this.coverUrl = coverUrl;
         this.noteUrl = noteUrl;
+    }
+
+
+    public List<SearcheBookHitBean> getHitList() {
+        return hitList;
+    }
+    public void setHitList(List<SearcheBookHitBean> hitList) {
+        this.hitList = hitList;
     }
 }

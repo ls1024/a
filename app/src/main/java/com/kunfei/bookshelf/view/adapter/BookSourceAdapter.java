@@ -7,9 +7,6 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.kunfei.bookshelf.R;
 import com.kunfei.bookshelf.bean.BookSourceBean;
 import com.kunfei.bookshelf.help.ItemTouchCallback;
@@ -21,6 +18,10 @@ import com.kunfei.bookshelf.view.activity.SourceEditActivity;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by GKF on 2017/12/22.
@@ -154,9 +155,9 @@ public class BookSourceAdapter extends RecyclerView.Adapter<BookSourceAdapter.My
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         CheckBox cbView;
-        ImageView editView;
-        ImageView delView;
-        ImageView topView;
+        AppCompatTextView editView;
+        AppCompatTextView delView;
+        AppCompatTextView topView;
 
         MyViewHolder(View itemView) {
             super(itemView);

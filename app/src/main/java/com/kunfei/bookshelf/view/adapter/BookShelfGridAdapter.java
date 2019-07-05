@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.kunfei.bookshelf.DbHelper;
 import com.kunfei.bookshelf.R;
 import com.kunfei.bookshelf.bean.BookShelfBean;
@@ -25,7 +26,7 @@ import com.kunfei.bookshelf.help.ItemTouchCallback;
 import com.kunfei.bookshelf.utils.theme.ThemeStore;
 import com.kunfei.bookshelf.view.adapter.base.OnItemClickListenerTwo;
 import com.kunfei.bookshelf.widget.BadgeView;
-import com.kunfei.bookshelf.widget.RotateLoading;
+import com.victor.loading.rotate.RotateLoading;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -112,7 +113,7 @@ public class BookShelfGridAdapter extends RecyclerView.Adapter<BookShelfGridAdap
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_bookshelf_grid, parent, false));
+        return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.my_item_bookshelf_grid, parent, false));
     }
 
     @Override
@@ -143,24 +144,18 @@ public class BookShelfGridAdapter extends RecyclerView.Adapter<BookShelfGridAdap
         if (!activity.isFinishing()) {
             if (TextUtils.isEmpty(bookShelfBean.getCustomCoverPath())) {
                 Glide.with(activity).load(bookShelfBean.getBookInfoBean().getCoverUrl())
-                        .dontAnimate()
-                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                        .centerCrop()
-                        .placeholder(R.drawable.img_cover_default)
+                        .apply(new RequestOptions().dontAnimate().diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                                .centerCrop().placeholder(R.drawable.img_cover_default))
                         .into(holder.ivCover);
             } else if (bookShelfBean.getCustomCoverPath().startsWith("http")) {
                 Glide.with(activity).load(bookShelfBean.getCustomCoverPath())
-                        .dontAnimate()
-                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                        .centerCrop()
-                        .placeholder(R.drawable.img_cover_default)
+                        .apply(new RequestOptions().dontAnimate().diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                                .centerCrop().placeholder(R.drawable.img_cover_default))
                         .into(holder.ivCover);
             } else {
                 Glide.with(activity).load(new File(bookShelfBean.getCustomCoverPath()))
-                        .dontAnimate()
-                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                        .centerCrop()
-                        .placeholder(R.drawable.img_cover_default)
+                        .apply(new RequestOptions().dontAnimate().diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                                .centerCrop().placeholder(R.drawable.img_cover_default))
                         .into(holder.ivCover);
             }
         }

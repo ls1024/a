@@ -20,6 +20,7 @@ import com.kunfei.bookshelf.model.impl.IHttpPostApi;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.util.Collections;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -59,6 +60,18 @@ public class BaseModelImpl {
                                 analyzeUrl.getHeaderMap());
         }
     }
+
+    public Observable<Response<String>> getResponseTP(String base_url, String path, Map<String, String> postData,Map<String, String> headerMap) {
+
+                return getRetrofitString(base_url)
+                        .create(IHttpPostApi.class)
+                        .postMap(path,
+                                postData,
+                                headerMap);
+
+
+    }
+
 
     public Retrofit getRetrofitString(String url) {
         return new Retrofit.Builder().baseUrl(url)

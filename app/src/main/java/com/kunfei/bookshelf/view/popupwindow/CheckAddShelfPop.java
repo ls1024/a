@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
 import com.kunfei.bookshelf.R;
+
+import androidx.annotation.NonNull;
 
 public class CheckAddShelfPop extends PopupWindow {
     private Context mContext;

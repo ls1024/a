@@ -60,11 +60,11 @@ class BookContent {
             if (TextUtils.isEmpty(baseUrl)) {
                 baseUrl = NetworkUtils.getAbsoluteURL(bookShelfBean.getBookInfoBean().getChapterUrl(), chapterBean.getDurChapterUrl());
             }
-            if (StringUtils.isJsonType(s) && !MApplication.getInstance().getDonateHb()) {
-                e.onError(new Throwable(MApplication.getInstance().getString(R.string.donate_s)));
-                e.onComplete();
-                return;
-            }
+            //if (StringUtils.isJsonType(s) && !MApplication.getInstance().getDonateHb()) {
+            //    e.onError(new Throwable(MApplication.getInstance().getString(R.string.donate_s)));
+            //    e.onComplete();
+            //    return;
+            //}
             Debug.printLog(tag, "┌成功获取正文页");
             Debug.printLog(tag, "└" + baseUrl);
             BookContentBean bookContentBean = new BookContentBean();
@@ -87,7 +87,7 @@ class BookContent {
                         .build().unique();
                 while (!TextUtils.isEmpty(webContentBean.nextUrl) && !usedUrlList.contains(webContentBean.nextUrl)) {
                     usedUrlList.add(webContentBean.nextUrl);
-                    if (nextChapter != null && webContentBean.nextUrl.equals(nextChapter.getDurChapterUrl())) {
+                    if (nextChapter != null && NetworkUtils.getAbsoluteURL(baseUrl, webContentBean.nextUrl).equals(NetworkUtils.getAbsoluteURL(baseUrl, nextChapter.getDurChapterUrl()))) {
                         break;
                     }
                     AnalyzeUrl analyzeUrl = new AnalyzeUrl(webContentBean.nextUrl, headerMap, tag);

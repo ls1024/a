@@ -14,6 +14,7 @@ import com.kunfei.basemvplib.BitIntentDataManager;
 import com.kunfei.basemvplib.impl.IView;
 import com.kunfei.bookshelf.base.observer.MyObserver;
 import com.kunfei.bookshelf.bean.BookChapterBean;
+import com.kunfei.bookshelf.bean.BookExtendBean;
 import com.kunfei.bookshelf.bean.BookShelfBean;
 import com.kunfei.bookshelf.bean.BookSourceBean;
 import com.kunfei.bookshelf.bean.SearchBookBean;
@@ -31,6 +32,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
@@ -44,6 +46,8 @@ public class BookDetailPresenter extends BasePresenterImpl<BookDetailContract.Vi
     private List<BookChapterBean> chapterBeanList;
     private Boolean inBookShelf = false;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private int hiddenStatus = 0;
+
 
     @Override
     public void initData(Intent intent) {
@@ -200,6 +204,69 @@ public class BookDetailPresenter extends BasePresenterImpl<BookDetailContract.Vi
                         }
                     });
         }
+    }
+
+
+    @Override
+    public int getHiddenStatusFromBookShelf(){
+        return BookshelfHelp.getHiddenStatusFromBookShelf(bookShelf.getNoteUrl());
+    }
+
+    @Override
+    public int hiddenOrShowFromBookShelf(String hidden) {
+        if (bookShelf != null) {
+            Observable.create((ObservableOnSubscribe<Boolean>) e -> {
+
+
+                BookExtendBean bookExtendBean = new BookExtendBean();
+                bookExtendBean.setNoteUrl(bookShelf.getNoteUrl());
+                bookExtendBean.setCol1(hidden);
+
+                BookshelfHelp.hiddenFromBookShelf(bookExtendBean);
+
+                searchBook.setIsCurrentSource(true);
+                inBookShelf = true;
+
+                e.onNext(true);
+                e.onComplete();
+            }).compose(RxUtils::toSimpleSingle)
+                    .subscribe(new Observer<Boolean>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
+                            compositeDisposable.add(d);
+                        }
+
+                        @Override
+                        public void onNext(Boolean value) {
+                            if (value) {
+                                RxBus.get().post(RxBusTag.HAD_HIDDEN_BOOK, bookShelf);
+                                //mView.updateView();
+                            } else {
+                                if(hiddenStatus==1) {
+                                    mView.toast("隐藏书籍失败！");
+                                }else{
+                                    mView.toast("取消隐藏书籍失败！");
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            e.printStackTrace();
+                            if(hiddenStatus==1) {
+                                mView.toast("隐藏书籍失败！");
+                            }else{
+                                mView.toast("取消隐藏书籍失败！");
+                            }
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
+        }
+        return  hiddenStatus;
     }
 
     /**

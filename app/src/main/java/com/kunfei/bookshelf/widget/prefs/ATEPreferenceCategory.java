@@ -7,9 +7,9 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.annotation.RequiresApi;
-
 import com.kunfei.bookshelf.utils.theme.ThemeStore;
+
+import androidx.annotation.RequiresApi;
 
 @SuppressWarnings("unused")
 public class ATEPreferenceCategory extends PreferenceCategory {

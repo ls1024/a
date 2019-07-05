@@ -14,7 +14,7 @@ import com.kunfei.bookshelf.help.BookshelfHelp;
 import com.kunfei.bookshelf.help.FileHelp;
 import com.kunfei.bookshelf.utils.MD5Utils;
 import com.kunfei.bookshelf.utils.StringUtils;
-import com.kunfei.bookshelf.widget.page.PageLoaderEpub;
+import com.kunfei.bookshelf.widget.my_page.PageLoaderEpub;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;

@@ -1,12 +1,15 @@
 //Copyright (c) 2017. 章钦豪. All rights reserved.
 package com.kunfei.bookshelf.view.popupwindow;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -18,6 +21,7 @@ import com.kunfei.bookshelf.R;
 import com.kunfei.bookshelf.constant.RxBusTag;
 import com.kunfei.bookshelf.help.ReadBookControl;
 import com.kunfei.bookshelf.utils.theme.ATH;
+import com.kunfei.bookshelf.widget.check_box.SmoothCheckBox;
 import com.kunfei.bookshelf.widget.views.ATESwitch;
 
 import butterknife.BindView;
@@ -27,6 +31,12 @@ import butterknife.ButterKnife;
 public class MoreSettingPop extends FrameLayout {
     @BindView(R.id.vw_bg)
     View vwBg;
+    @BindView(R.id.hpb_light)
+    SeekBar hpbLight;
+    @BindView(R.id.scb_follow_sys)
+    SmoothCheckBox scbFollowSys;
+    @BindView(R.id.ll_follow_sys)
+    LinearLayout llFollowSys;
     @BindView(R.id.sb_click_all_next)
     Switch sbClickAllNext;
     @BindView(R.id.sb_click)
@@ -59,6 +69,10 @@ public class MoreSettingPop extends FrameLayout {
     TextView tvScreenDirection;
     @BindView(R.id.ll_screen_direction)
     LinearLayout llScreenDirection;
+    @BindView(R.id.tv_progress_display)
+    TextView tvProgressDisplay;
+    @BindView(R.id.ll_progress_display)
+    LinearLayout llProgressDisplay;
     @BindView(R.id.sw_volume_next_page)
     Switch swVolumeNextPage;
     @BindView(R.id.sw_read_aloud_key)
@@ -78,25 +92,22 @@ public class MoreSettingPop extends FrameLayout {
     @BindView(R.id.llImmersionStatusBar)
     LinearLayout llImmersionStatusBar;
 
-    private Context context;
+    private Activity context;
     private ReadBookControl readBookControl = ReadBookControl.getInstance();
     private Callback callback;
 
     public MoreSettingPop(Context context) {
         super(context);
-        this.context = context;
         init(context);
     }
 
     public MoreSettingPop(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.context = context;
         init(context);
     }
 
     public MoreSettingPop(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.context = context;
         init(context);
     }
 
@@ -106,14 +117,59 @@ public class MoreSettingPop extends FrameLayout {
         vwBg.setOnClickListener(null);
     }
 
-    public void setListener(@NonNull Callback callback) {
+    public void setListener(Activity activity, @NonNull Callback callback) {
+        this.context = activity;
         this.callback = callback;
         initData();
         bindEvent();
+        initLight();
     }
 
     private void bindEvent() {
         this.setOnClickListener(view -> this.setVisibility(GONE));
+
+
+        //亮度调节
+        llFollowSys.setOnClickListener(v -> {
+            if (scbFollowSys.isChecked()) {
+                scbFollowSys.setChecked(false, true);
+            } else {
+                scbFollowSys.setChecked(true, true);
+            }
+        });
+        scbFollowSys.setOnCheckedChangeListener((checkBox, isChecked) -> {
+            readBookControl.setLightFollowSys(isChecked);
+            if (isChecked) {
+                //跟随系统
+                hpbLight.setEnabled(false);
+                setScreenBrightness();
+            } else {
+                //不跟随系统
+                hpbLight.setEnabled(true);
+                setScreenBrightness(readBookControl.getLight());
+            }
+        });
+        hpbLight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                if (!readBookControl.getLightFollowSys()) {
+                    readBookControl.setLight(i);
+                    setScreenBrightness(i);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+
         sbImmersionStatusBar.setOnCheckedChangeListener(((compoundButton, b) -> {
             if (compoundButton.isPressed()) {
                 readBookControl.setImmersionStatusBar(b);
@@ -214,6 +270,20 @@ public class MoreSettingPop extends FrameLayout {
             dialog.show();
             ATH.setAlertDialogTint(dialog);
         });
+
+        llProgressDisplay.setOnClickListener(view -> {
+            AlertDialog dialog = new AlertDialog.Builder(context)
+                    .setTitle(context.getString(R.string.progress_display))
+                    .setSingleChoiceItems(context.getResources().getStringArray(R.array.progress_display_list_title), readBookControl.getProgressDisplay(), (dialogInterface, i) -> {
+                        readBookControl.setProgressDisplay(i);
+                        upProgressDisplay(i);
+                        dialogInterface.dismiss();
+                        callback.refreshPage();
+                    })
+                    .create();
+            dialog.show();
+        });
+
         llNavigationBarColor.setOnClickListener(view -> {
             AlertDialog dialog = new AlertDialog.Builder(context)
                     .setTitle(context.getString(R.string.re_navigation_bar_color))
@@ -231,6 +301,7 @@ public class MoreSettingPop extends FrameLayout {
 
     private void initData() {
         upScreenDirection(readBookControl.getScreenDirection());
+        upProgressDisplay(readBookControl.getProgressDisplay());
         upScreenTimeOut(readBookControl.getScreenTimeOut());
         upFConvert(readBookControl.getTextConvert());
         upNavBarColor(readBookControl.getNavBarColor());
@@ -289,8 +360,38 @@ public class MoreSettingPop extends FrameLayout {
         }
     }
 
+    private void upProgressDisplay(int progressDisplay) {
+        String[] progressDisplayListTitle = context.getResources().getStringArray(R.array.progress_display_list_title);
+        if (progressDisplay >= progressDisplayListTitle.length) {
+            tvProgressDisplay.setText(progressDisplayListTitle[0]);
+        } else {
+            tvProgressDisplay.setText(progressDisplayListTitle[progressDisplay]);
+        }
+    }
+
     private void upNavBarColor(int nColor) {
         reNavBarColorVal.setText(context.getResources().getStringArray(R.array.NavBarColors)[nColor]);
+    }
+
+    public void setScreenBrightness() {
+        WindowManager.LayoutParams params = (context).getWindow().getAttributes();
+        params.screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE;
+        (context).getWindow().setAttributes(params);
+    }
+
+    public void setScreenBrightness(int value) {
+        if (value < 1) value = 1;
+        WindowManager.LayoutParams params = (context).getWindow().getAttributes();
+        params.screenBrightness = value * 1.0f / 255f;
+        (context).getWindow().setAttributes(params);
+    }
+
+    public void initLight() {
+        hpbLight.setProgress(readBookControl.getLight());
+        scbFollowSys.setChecked(readBookControl.getLightFollowSys());
+        if (!readBookControl.getLightFollowSys()) {
+            setScreenBrightness(readBookControl.getLight());
+        }
     }
 
     public interface Callback {

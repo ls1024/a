@@ -74,11 +74,11 @@ public class WelcomeActivity extends MBaseActivity {
     }
 
     private void startBookshelfActivity() {
-        startActivityByAnim(new Intent(this, MainActivity.class), android.R.anim.fade_in, android.R.anim.fade_out);
+        startActivityByAnim(new Intent(this, MyMainActivity.class), android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     private void startReadActivity() {
-        Intent intent = new Intent(this, ReadBookActivity.class);
+        Intent intent = new Intent(this, MyReadBookActivity.class);
         intent.putExtra("openFrom", ReadBookPresenter.OPEN_FROM_APP);
         startActivity(intent);
     }

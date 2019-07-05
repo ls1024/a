@@ -23,7 +23,7 @@ public interface BookSourceContract {
 
         void importBookSourceLocal(String path);
 
-        void checkBookSource(List<BookSourceBean> sourceBeans);
+        //void checkBookSource(List<BookSourceBean> sourceBeans);
 
     }
 

@@ -9,11 +9,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.kunfei.bookshelf.R;
+import com.kunfei.bookshelf.bean.FindKindBean;
+import com.kunfei.bookshelf.utils.ReadAssets;
+import com.kunfei.bookshelf.view.adapter.FindSecondAdapter;
+import com.kunfei.bookshelf.widget.flowlayout.TagFlowLayout;
+import com.victor.loading.rotate.RotateLoading;
+
 import androidx.cardview.widget.CardView;
 
-import com.kunfei.bookshelf.R;
-import com.kunfei.bookshelf.utils.ReadAssets;
-import com.kunfei.bookshelf.widget.RotateLoading;
+import java.util.List;
 
 import ru.noties.markwon.Markwon;
 
@@ -125,5 +130,22 @@ public class MoDialogView extends LinearLayout {
         imageView.setImageBitmap(bitmap);
         tvCanCopy.setText(text);
     }
+
+    ////////////////////书源发现分类选择////////////////////////////
+    public void showKindList(String book_source_name, List<FindKindBean> list, FindSecondAdapter findSecondAdapter){
+        removeAllViews();
+        LayoutInflater.from(getContext()).inflate(R.layout.moprogress_dialog_findsecondchoice, this, true);
+        final TextView find_book_source_name = (TextView) findViewById(R.id.tv_find_book_source_name);
+        final TagFlowLayout tflSecondFind = (TagFlowLayout)findViewById(R.id.tfl_second_find);
+
+        find_book_source_name.setText(book_source_name);
+
+        tflSecondFind.setAdapter(findSecondAdapter);
+
+        findSecondAdapter.replaceAll(list);
+
+
+    }
+
 
 }

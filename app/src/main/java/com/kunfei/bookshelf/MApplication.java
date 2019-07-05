@@ -21,10 +21,12 @@ import com.kunfei.bookshelf.help.AppFrontBackHelper;
 import com.kunfei.bookshelf.help.CrashHandler;
 import com.kunfei.bookshelf.help.FileHelp;
 import com.kunfei.bookshelf.model.UpLastChapterModel;
+import com.kunfei.bookshelf.utils.TimeUtils;
 import com.kunfei.bookshelf.utils.theme.ThemeStore;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -43,7 +45,18 @@ public class MApplication extends Application {
     private static String versionName;
     private static int versionCode;
     private SharedPreferences configPreferences;
-    private boolean donateHb;
+    //private boolean donateHb;
+
+    private boolean isChangeTheme = false;//activity是否是改变风格
+
+    public boolean isChangeTheme() {
+        return isChangeTheme;
+    }
+
+    public void setChangeTheme(boolean changeTheme) {
+        isChangeTheme = changeTheme;
+    }
+
 
     public static MApplication getInstance() {
         return instance;
@@ -89,7 +102,7 @@ public class MApplication extends Application {
         AppFrontBackHelper.getInstance().register(this, new AppFrontBackHelper.OnAppStatusListener() {
             @Override
             public void onFront() {
-                donateHb = System.currentTimeMillis() - configPreferences.getLong("DonateHb", 0) <= TimeUnit.DAYS.toMillis(7);
+                //donateHb = System.currentTimeMillis() - configPreferences.getLong("DonateHb", 0) <= TimeUnit.DAYS.toMillis(7);
             }
 
             @Override
@@ -137,6 +150,21 @@ public class MApplication extends Application {
         return configPreferences.getBoolean("nightTheme", false);
     }
 
+
+
+    /**
+     * 设置更新检查时间
+     */
+    public void setLastCheckTime(String lastCheckTime) {
+        configPreferences.edit()
+                .putString("lastCheckTime", lastCheckTime)
+                .apply();
+    }
+
+    public String getLastCheckTime(){
+        return configPreferences.getString("lastCheckTime", TimeUtils.date2String(new Date()));
+    }
+
     /**
      * 设置下载地址
      */
@@ -152,10 +180,19 @@ public class MApplication extends Application {
                 .apply();
     }
 
+    public void setLogoPath(String logoPath) {
+        //MApplication.downloadPath = downloadPath;
+        //Constant.BOOK_CACHE_PATH = MApplication.downloadPath + File.separator + "book_cache" + File.separator;
+        SharedPreferences.Editor editor = configPreferences.edit();
+        editor.putString(getString(R.string.pk_logo_path), logoPath);
+        editor.apply();
+    }
+
     public static SharedPreferences getConfigPreferences() {
         return getInstance().configPreferences;
     }
 
+    /*
     public boolean getDonateHb() {
         return donateHb || BuildConfig.DEBUG;
     }
@@ -166,6 +203,7 @@ public class MApplication extends Application {
                 .apply();
         donateHb = true;
     }
+    */
 
     public void upEInkMode() {
         MApplication.isEInkMode = configPreferences.getBoolean("E-InkMode", false);

@@ -9,7 +9,6 @@
     <string name="book_local">添加本地</string>
     <string name="book_source_manage">书源管理</string>
     <string name="setting">设置</string>
-    <string name="theme_setting">主题设置</string>
     <string name="about">关于</string>
     <string name="exit">退出</string>
     <string name="exit_no_save">还未保存,是否继续编辑</string>
@@ -109,8 +108,7 @@
     <string name="night_theme">夜间模式</string>
     <string name="welcome">启动页</string>
     <string name="update_search_threads_num">更新和搜索线程数,如感觉卡顿请减小线程数,量力而行</string>
-    <string name="change_icon">切换图标</string>
-    <string name="remove_from_bookshelf">删除书籍</string>
+    <string name="remove_from_bookshelf">移出书架</string>
     <string name="start_read">优化阅读</string>
     <string name="data_loading">加载数据中…</string>
     <string name="load_error_retry">加载失败,点击重试</string>
@@ -125,7 +123,6 @@
     <string name="bookshelf_show">书架进度显示</string>
     <string name="bookshelf_show_0">显示更新提示</string>
     <string name="bookshelf_show_1">显示进度条</string>
-    <string name="bookshelf_show_2">手动排序</string>
     <string name="del_select">删除所选</string>
     <string name="del_msg">是否确认删除?</string>
     <string name="clear_font">默认字体</string>
@@ -191,8 +188,6 @@
     <string name="debug_hint">书名、作者、URL</string>
     <string name="pt_show_all_find">显示所有发现</string>
     <string name="ps_show_all_find">关闭则只显示勾选源的发现</string>
-    <string name="pt_show_all_js_find">显示所有JS发现</string>
-    <string name="ps_show_js_find">关闭则只显示没有JS的发现</string>
     <string name="no_find">没有发现，可以在书源里添加。</string>
 
     <string name="update_chapter">更新目录</string>
@@ -225,8 +220,6 @@
     <string name="page_mode_NONE">无动画</string>
     <string name="up_change_source_last_chapter_t">后台更新换源最新章节</string>
     <string name="up_change_source_last_chapter_s">开启则会在软件打开1分钟后开始更新</string>
-    <string name="behavior_main_t">书架ToolBar自动隐藏</string>
-    <string name="behavior_main_s">滚动书架时ToolBar自动隐藏与显示</string>
     <string name="login">登录</string>
     <string name="success">成功</string>
     <string name="source_no_login">当前源没有配置登陆地址</string>
@@ -273,8 +266,6 @@
     <string name="scan_qr_code">扫描二维码</string>
     <string name="at_char">\@</string>
     <string name="and_char"><![CDATA[&]]></string>
-    <string name="default_theme">默认主题</string>
-    <string name="restore_default_theme">恢复主题为默认配色</string>
     <string name="read_file_error">文件读取失败</string>
     <string name="bg_image_per">获取背景图片需存储权限</string>
     <string name="input_book_source_url">输入书源网址</string>
@@ -316,10 +307,7 @@
     <string name="chapter_list_empty">目录列表为空</string>
     <string name="load_error_msg">加载失败\n%s</string>
 
-    <string name="e_ink_mode">E-Ink 模式</string>
-    <string name="e_ink_mode_detail">去除动画,优化电纸书使用体验</string>
     <string name="qr_share">二维码分享</string>
-    <string name="wifi_share">wifi分享</string>
     <string name="please_grant_storage_permission">请给于存储权限</string>
     <string name="skip_previous">上一个</string>
     <string name="skip_next">下一个</string>
@@ -327,7 +315,6 @@
     <string name="is_enable">启用</string>
     <string name="cannot_empty">输入不能为空</string>
     <string name="edit_find">编辑发现</string>
-    <string name="change_icon_summary">切换软件显示在桌面的图标</string>
 
     <string name="clear_bookshelf">清空书架</string>
     <string name="clearHistory">清空搜索记录</string>

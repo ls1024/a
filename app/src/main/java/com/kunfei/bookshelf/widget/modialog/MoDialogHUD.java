@@ -3,6 +3,7 @@ package com.kunfei.bookshelf.widget.modialog;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -13,7 +14,12 @@ import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 
 import com.kunfei.bookshelf.R;
+import com.kunfei.bookshelf.bean.FindKindBean;
+import com.kunfei.bookshelf.bean.ReplaceRuleBean;
 import com.kunfei.bookshelf.utils.SoftInputUtil;
+import com.kunfei.bookshelf.view.adapter.FindSecondAdapter;
+
+import java.util.List;
 
 /**
  * 对话框
@@ -296,5 +302,43 @@ public class MoDialogHUD {
 
     private interface OnDismissListener {
         void onDismiss();
+    }
+
+
+    ////////////////////书源发现分类选择////////////////////////////
+    public void showKindList(String book_source_name, List<FindKindBean> list, FindSecondAdapter findSecondAdapter){
+        initCenter();
+        initAnimation();
+        canBack = true;
+        rootView.setBackgroundColor(Color.parseColor("#00000000"));
+        rootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
+        mSharedView.showKindList(book_source_name,list,findSecondAdapter);
+
+        if (!isShowing()) {
+            onAttached();
+        }
+        mSharedView.getChildAt(0).startAnimation(inAnim);
+    }
+
+
+    /**
+     * 编辑替换规则
+     */
+    public void showPutReplaceRule(ReplaceRuleBean replaceRuleBean, EditReplaceRuleView.OnSaveReplaceRule onSaveReplaceRule) {
+        initCenter();
+        initAnimation();
+        canBack = true;
+        rootView.setOnClickListener(v -> dismiss());
+        EditReplaceRuleView.getInstance(mSharedView)
+                .showEditReplaceRule(replaceRuleBean, onSaveReplaceRule, this);
+        if (!isShowing()) {
+            onAttached();
+        }
+        mSharedView.getChildAt(0).startAnimation(inAnim);
     }
 }

@@ -3,6 +3,7 @@ package com.kunfei.bookshelf.presenter.contract;
 import com.kunfei.basemvplib.impl.IPresenter;
 import com.kunfei.basemvplib.impl.IView;
 import com.kunfei.bookshelf.bean.SearchBookBean;
+import com.kunfei.bookshelf.view.adapter.ChoiceBookAdapter;
 
 import java.util.List;
 

@@ -7,11 +7,9 @@ import okhttp3.Response;
 
 public class JsDownloadInterceptor implements Interceptor {
     private JsDownloadListener downloadListener;
-
     public JsDownloadInterceptor(JsDownloadListener downloadListener) {
         this.downloadListener = downloadListener;
     }
-
     @Override
     public Response intercept(Chain chain) throws IOException {
         Response response = chain.proceed(chain.request());

@@ -28,7 +28,7 @@ public class WelcomeBookActivity extends MBaseActivity {
     @Override
     protected void onCreateActivity() {
         // 避免从桌面启动程序后，会重新实例化入口类的activity
-        if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
+        if((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0){
             finish();
             return;
         }
@@ -71,11 +71,11 @@ public class WelcomeBookActivity extends MBaseActivity {
     }
 
     private void startBookshelfActivity() {
-        startActivityByAnim(new Intent(this, MainActivity.class), android.R.anim.fade_in, android.R.anim.fade_out);
+        startActivityByAnim(new Intent(this, MyMainActivity.class), android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     private void startReadActivity() {
-        Intent intent = new Intent(this, ReadBookActivity.class);
+        Intent intent = new Intent(this, MyReadBookActivity.class);
         intent.putExtra("openFrom", ReadBookPresenter.OPEN_FROM_APP);
         startActivity(intent);
     }

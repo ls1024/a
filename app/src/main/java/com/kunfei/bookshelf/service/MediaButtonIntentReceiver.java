@@ -9,7 +9,7 @@ import com.hwangjr.rxbus.RxBus;
 import com.kunfei.basemvplib.AppActivityManager;
 import com.kunfei.bookshelf.constant.RxBusTag;
 import com.kunfei.bookshelf.presenter.ReadBookPresenter;
-import com.kunfei.bookshelf.view.activity.ReadBookActivity;
+import com.kunfei.bookshelf.view.activity.MyReadBookActivity;
 
 /**
  * Created by GKF on 2018/1/6.
@@ -53,8 +53,8 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
     }
 
     private static void readAloud(final Context context, String command) {
-        if (!AppActivityManager.getInstance().isExist(ReadBookActivity.class)) {
-            Intent intent = new Intent(context, ReadBookActivity.class);
+        if (!AppActivityManager.getInstance().isExist(MyReadBookActivity.class)) {
+            Intent intent = new Intent(context, MyReadBookActivity.class);
             intent.putExtra("openFrom", ReadBookPresenter.OPEN_FROM_APP);
             intent.putExtra("readAloud", true);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

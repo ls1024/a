@@ -23,7 +23,6 @@ import com.kunfei.bookshelf.constant.RxBusTag;
 import com.kunfei.bookshelf.help.DocumentHelper;
 import com.kunfei.bookshelf.model.BookSourceManager;
 import com.kunfei.bookshelf.presenter.contract.BookSourceContract;
-import com.kunfei.bookshelf.service.CheckSourceService;
 
 import java.io.File;
 import java.util.List;
@@ -186,10 +185,7 @@ public class BookSourcePresenter extends BasePresenterImpl<BookSourceContract.Vi
         };
     }
 
-    @Override
-    public void checkBookSource(List<BookSourceBean> sourceBeans) {
-        CheckSourceService.start(mView.getContext(), sourceBeans);
-    }
+
 
     /////////////////////////////////////////////////
 
@@ -209,16 +205,16 @@ public class BookSourcePresenter extends BasePresenterImpl<BookSourceContract.Vi
     @Subscribe(thread = EventThread.MAIN_THREAD, tags = {@Tag(RxBusTag.CHECK_SOURCE_STATE)})
     public void upCheckSourceState(String msg) {
         mView.refreshBookSource();
-        if (progressSnackBar == null) {
-            progressSnackBar = mView.getSnackBar(msg, Snackbar.LENGTH_INDEFINITE);
-            progressSnackBar.setActionTextColor(Color.WHITE);
-            progressSnackBar.setAction(mView.getContext().getString(R.string.cancel), view -> CheckSourceService.stop(mView.getContext()));
-        } else {
-            progressSnackBar.setText(msg);
-        }
-        if (!progressSnackBar.isShown()) {
-            progressSnackBar.show();
-        }
+            if (progressSnackBar == null) {
+                progressSnackBar = mView.getSnackBar(msg, Snackbar.LENGTH_INDEFINITE);
+                progressSnackBar.setActionTextColor(Color.WHITE);
+               // progressSnackBar.setAction(mView.getContext().getString(R.string.cancel), view -> CheckSourceService.stop(mView.getContext()));
+            } else {
+                progressSnackBar.setText(msg);
+            }
+            if (!progressSnackBar.isShown()) {
+                progressSnackBar.show();
+            }
     }
 
     @Subscribe(thread = EventThread.MAIN_THREAD, tags = {@Tag(RxBusTag.CHECK_SOURCE_FINISH)})

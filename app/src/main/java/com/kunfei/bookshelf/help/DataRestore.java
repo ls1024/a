@@ -50,8 +50,8 @@ public class DataRestore {
         } catch (Exception ignored) {
         }
         if (entries == null || entries.isEmpty()) return;
-        long donateHb = MApplication.getConfigPreferences().getLong("DonateHb", 0);
-        donateHb = donateHb > System.currentTimeMillis() ? 0 : donateHb;
+        //long donateHb = MApplication.getConfigPreferences().getLong("DonateHb", 0);
+        //donateHb = donateHb > System.currentTimeMillis() ? 0 : donateHb;
         SharedPreferences.Editor editor = MApplication.getConfigPreferences().edit();
         editor.clear();
         for (Map.Entry<String, ?> entry : entries.entrySet()) {
@@ -77,7 +77,7 @@ public class DataRestore {
                     break;
             }
         }
-        editor.putLong("DonateHb", donateHb);
+        //editor.putLong("DonateHb", donateHb);
         editor.putInt("versionCode", MApplication.getVersionCode());
         editor.apply();
         ReadBookControl.getInstance().updateReaderSettings();

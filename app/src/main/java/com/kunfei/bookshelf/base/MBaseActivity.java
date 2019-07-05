@@ -74,9 +74,9 @@ public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T
 
     @Override
     public void setSupportActionBar(@Nullable androidx.appcompat.widget.Toolbar toolbar) {
-        if (toolbar != null) {
-            toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
-        }
+        //if (toolbar != null) {
+            //toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
+       // }
         super.setSupportActionBar(toolbar);
     }
 
@@ -96,10 +96,27 @@ public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T
         return super.onCreateOptionsMenu(menu);
     }
 
-    @SuppressLint("PrivateApi")
-    @SuppressWarnings("unchecked")
     @Override
     public boolean onMenuOpened(int featureId, Menu menu) {
+        if (menu != null) {
+            if (menu.getClass().getSimpleName().equalsIgnoreCase("MenuBuilder")) {
+                try {
+                    @SuppressLint("PrivateApi")
+                    Method method = menu.getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
+                    method.setAccessible(true);
+                    method.invoke(menu, true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return super.onMenuOpened(featureId, menu);
+    }
+
+    //@SuppressLint("PrivateApi")
+    @SuppressWarnings("unchecked")
+    //@Override
+    public boolean onMenuOpened111(int featureId, Menu menu) {
         if (menu != null) {
             //展开菜单显示图标
             if (menu.getClass().getSimpleName().equalsIgnoreCase("MenuBuilder")) {
@@ -138,6 +155,13 @@ public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T
                 } else {
                     mImmersionBar.transparentStatusBar();
                 }
+
+                if(findViewById(R.id.pageView) != null) {//看書界面特殊處理
+                    mImmersionBar.transparentStatusBar();
+                }else{
+                    mImmersionBar.statusBarColor(R.color.colorPrimary);
+                }
+
             } else {
                 if (getSupportActionBar() != null && actionBar != null && actionBar.getVisibility() == View.VISIBLE) {
                     mImmersionBar.statusBarColorInt(ThemeStore.statusBarColor(this));
@@ -246,7 +270,7 @@ public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T
     public void startActivity(Intent intent) {
         super.startActivity(intent);
         if (MApplication.isEInkMode) {
-            overridePendingTransition(R.anim.anim_none, R.anim.anim_none);
+            overridePendingTransition(R.anim.anim_none,R.anim.anim_none);
         }
     }
 
@@ -254,7 +278,7 @@ public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T
     public void startActivityForResult(Intent intent, int requestCode, @Nullable Bundle options) {
         super.startActivityForResult(intent, requestCode, options);
         if (MApplication.isEInkMode) {
-            overridePendingTransition(R.anim.anim_none, R.anim.anim_none);
+            overridePendingTransition(R.anim.anim_none,R.anim.anim_none);
         }
     }
 

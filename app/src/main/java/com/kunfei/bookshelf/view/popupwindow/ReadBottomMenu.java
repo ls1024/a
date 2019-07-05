@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.kunfei.bookshelf.R;
 import com.kunfei.bookshelf.service.ReadAloudService;
+import com.monke.mprogressbar.MHorProgressBar;
+import com.monke.mprogressbar.OnProgressListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,7 +39,7 @@ public class ReadBottomMenu extends FrameLayout {
     @BindView(R.id.tv_pre)
     TextView tvPre;
     @BindView(R.id.hpb_read_progress)
-    SeekBar hpbReadProgress;
+    MHorProgressBar hpbReadProgress;
     @BindView(R.id.tv_next)
     TextView tvNext;
     @BindView(R.id.ll_catalog)
@@ -93,20 +95,28 @@ public class ReadBottomMenu extends FrameLayout {
         llFloatingButton.setOnClickListener(view -> callback.dismiss());
 
         //阅读进度
-        hpbReadProgress.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        hpbReadProgress.setProgressListener(new OnProgressListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+            public void moveStartProgress(float dur) {
 
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+            public void durProgressChange(float dur) {
 
             }
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                callback.skipToPage(seekBar.getProgress());
+            public void moveStopProgress(float dur) {
+                int realDur = (int) Math.ceil(dur);
+                if (hpbReadProgress.getDurProgress() != realDur)
+                    hpbReadProgress.setDurProgress(realDur);
+                callback.skipToPage(realDur);
+            }
+
+            @Override
+            public void setDurProgress(float dur) {
+
             }
         });
 
@@ -188,7 +198,7 @@ public class ReadBottomMenu extends FrameLayout {
         fabReadAloud.setContentDescription(text);
     }
 
-    public SeekBar getReadProgress() {
+    public MHorProgressBar getReadProgress() {
         return hpbReadProgress;
     }
 

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <View style="@style/Style.Shadow.Bottom" />
@@ -24,6 +25,61 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/background_menu"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/ll_follow_sys"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="@string/brightness"
+                            android:textColor="@color/tv_text_default"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginRight="7dp"
+                            android:text="@string/flow_sys"
+                            android:textColor="@color/tv_text_default"
+                            android:textSize="14sp" />
+
+                        <com.kunfei.bookshelf.widget.check_box.SmoothCheckBox
+                            android:id="@+id/scb_follow_sys"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_gravity="center_vertical"
+                            android:clickable="false"
+                            android:contentDescription="@string/flow_sys"
+                            app:duration="150" />
+                    </LinearLayout>
+
+                    <com.kunfei.bookshelf.widget.views.ATESeekBar
+                        android:id="@+id/hpb_light"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:max="255" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

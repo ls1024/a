@@ -72,7 +72,6 @@ public class FastScroller extends LinearLayout {
                 setViewPositions(getScrollProportion(recyclerView));
             }
         }
-
         @Override
         public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
@@ -434,7 +433,6 @@ public class FastScroller extends LinearLayout {
                             mBubbleView.setVisibility(GONE);
                             mBubbleAnimator = null;
                         }
-
                         @Override
                         public void onAnimationCancel(Animator animation) {
                             super.onAnimationCancel(animation);
@@ -469,7 +467,6 @@ public class FastScroller extends LinearLayout {
                         mScrollbar.setVisibility(GONE);
                         mScrollbarAnimator = null;
                     }
-
                     @Override
                     public void onAnimationCancel(Animator animation) {
                         super.onAnimationCancel(animation);

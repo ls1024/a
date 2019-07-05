@@ -160,6 +160,7 @@
                     android:layout_height="50dp"
                     android:background="@drawable/bg_ib_pre_round"
                     android:clickable="true"
+                    android:visibility="gone"
                     android:contentDescription="@string/adjust"
                     android:focusable="true"
                     android:orientation="vertical"
@@ -186,6 +187,7 @@
 
                 <View
                     android:layout_width="0dp"
+                    android:visibility="gone"
                     android:layout_height="match_parent"
                     android:layout_weight="2" />
                 <!--界面按钮-->

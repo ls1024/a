@@ -81,6 +81,14 @@ public class StringUtils {
         return "";
     }
 
+
+    public static String nullToText(CharSequence text) {
+        if (TextUtils.isEmpty(text)) {
+            return "";
+        }
+        return text.toString();
+    }
+
     public static String toFirstCapital(String str) {
         return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
@@ -310,7 +318,7 @@ public class StringUtils {
         // 此处用到了StringJoiner(JDK 8引入的类）
         // 先构造一个以参数delimiter为分隔符的StringJoiner对象
         StringJoiner joiner = new StringJoiner(delimiter);
-        for (CharSequence cs : elements) {
+        for (CharSequence cs: elements) {
             // 拼接字符
             joiner.add(cs);
         }
@@ -321,7 +329,7 @@ public class StringUtils {
         if (elements == null) return null;
         if (delimiter == null) delimiter = ",";
         StringJoiner joiner = new StringJoiner(delimiter);
-        for (CharSequence cs : elements) {
+        for (CharSequence cs: elements) {
             joiner.add(cs);
         }
         return joiner.toString();
@@ -333,7 +341,7 @@ public class StringUtils {
         return m.find();
     }
 
-    public static boolean isNumeric(String str) {
+    public static boolean isNumeric(String str){
         Pattern pattern = Pattern.compile("[0-9]*");
         Matcher isNum = pattern.matcher(str);
         return isNum.matches();

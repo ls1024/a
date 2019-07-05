@@ -46,7 +46,6 @@ import com.kunfei.bookshelf.constant.BookType;
 import com.kunfei.bookshelf.model.BookSourceManager;
 import com.kunfei.bookshelf.presenter.SourceEditPresenter;
 import com.kunfei.bookshelf.presenter.contract.SourceEditContract;
-import com.kunfei.bookshelf.service.ShareService;
 import com.kunfei.bookshelf.utils.RxUtils;
 import com.kunfei.bookshelf.utils.SoftInputUtil;
 import com.kunfei.bookshelf.utils.theme.ThemeStore;
@@ -525,9 +524,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
             case R.id.action_share_it:
                 shareBookSource();
                 break;
-            case R.id.action_share_wifi:
-                ShareService.startThis(this, Collections.singletonList(getBookSource()));
-                break;
+
             case R.id.action_rule_summary:
                 openRuleSummary();
                 break;

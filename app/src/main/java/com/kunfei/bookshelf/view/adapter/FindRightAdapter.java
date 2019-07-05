@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.kunfei.bookshelf.R;
 import com.kunfei.bookshelf.bean.FindKindBean;
 import com.kunfei.bookshelf.bean.FindKindGroupBean;
-import com.kunfei.bookshelf.view.activity.ChoiceBookActivity;
 import com.kunfei.bookshelf.widget.recycler.expandable.OnRecyclerViewListener;
 import com.kunfei.bookshelf.widget.recycler.expandable.bean.RecyclerViewData;
 import com.kunfei.bookshelf.widget.recycler.sectioned.SectionedRecyclerViewAdapter;
@@ -92,12 +91,14 @@ public class FindRightAdapter extends SectionedRecyclerViewAdapter<FindRightAdap
             holder.tv_item.setHorizontallyScrolling(false);
             holder.tv_item.setText(kindBean.getKindName());
             holder.tv_item.setOnClickListener(view -> {
+                /*
                 Intent intent = new Intent(context, ChoiceBookActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("url", kindBean.getKindUrl());
                 intent.putExtra("title", kindBean.getKindName());
                 intent.putExtra("tag", kindBean.getTag());
                 context.startActivity(intent);
+                */
             });
         } catch (Exception e) {
             e.printStackTrace();

@@ -36,7 +36,7 @@ import com.kunfei.bookshelf.MApplication;
 import com.kunfei.bookshelf.R;
 import com.kunfei.bookshelf.constant.RxBusTag;
 import com.kunfei.bookshelf.help.MediaManager;
-import com.kunfei.bookshelf.view.activity.ReadBookActivity;
+import com.kunfei.bookshelf.view.activity.MyReadBookActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -84,6 +84,7 @@ public class ReadAloudService extends Service {
     private BroadcastReceiver broadcastReceiver;
     private SharedPreferences preference;
     private int speechRate;
+    private int speechPitch;
     private String title;
     private String text;
     private boolean fadeTts;
@@ -98,6 +99,7 @@ public class ReadAloudService extends Service {
     private String audioUrl;
     private int progress;
 
+    private String replace = "";
     /**
      * 朗读
      */
@@ -120,6 +122,18 @@ public class ReadAloudService extends Service {
         if (running) {
             Intent intent = new Intent(context, ReadAloudService.class);
             intent.setAction(ActionDoneService);
+            context.startService(intent);
+        }
+    }
+
+    /**
+     * @param context 停止ForReplace
+     */
+    public static void stopForReplace(Context context) {
+        if (running) {
+            Intent intent = new Intent(context, ReadAloudService.class);
+            intent.setAction(ActionDoneService);
+            intent.putExtra("replace","1");
             context.startService(intent);
         }
     }
@@ -201,6 +215,7 @@ public class ReadAloudService extends Service {
             if (action != null) {
                 switch (action) {
                     case ActionDoneService:
+                     replace =  intent.getStringExtra("replace");
                         stopSelf();
                         break;
                     case ActionPauseService:
@@ -335,6 +350,7 @@ public class ReadAloudService extends Service {
             RxBus.get().post(RxBusTag.ALOUD_STATE, Status.PLAY);
             updateNotification();
             initSpeechRate();
+            initSpeechPitch();
             HashMap<String, String> map = new HashMap<>();
             map.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "content");
             for (int i = nowSpeak; i < contentList.size(); i++) {
@@ -367,10 +383,18 @@ public class ReadAloudService extends Service {
     }
 
     private void initSpeechRate() {
-        if (speechRate != preference.getInt("speechRate", 10) && !preference.getBoolean("speechRateFollowSys", true)) {
+        if (speechRate != preference.getInt("speechRate", 10) ) {
             speechRate = preference.getInt("speechRate", 10);
             float speechRateF = (float) speechRate / 10;
             textToSpeech.setSpeechRate(speechRateF);
+        }
+    }
+
+    private void initSpeechPitch() {
+        if (speechPitch != preference.getInt("speechPitch", 10) ) {
+            speechPitch = preference.getInt("speechPitch", 10);
+            float speechPitchF = (float) speechPitch / 10;
+            textToSpeech.setPitch(speechPitchF);
         }
     }
 
@@ -440,7 +464,7 @@ public class ReadAloudService extends Service {
     }
 
     private PendingIntent getReadBookActivityPendingIntent() {
-        Intent intent = new Intent(this, ReadBookActivity.class);
+        Intent intent = new Intent(this, MyReadBookActivity.class);
         intent.setAction(ReadAloudService.ActionReadActivity);
         return PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
@@ -495,7 +519,12 @@ public class ReadAloudService extends Service {
         super.onDestroy();
         stopForeground(true);
         handler.removeCallbacks(dsRunnable);
-        RxBus.get().post(RxBusTag.ALOUD_STATE, Status.STOP);
+
+        if("1".equals(replace)) {
+            RxBus.get().post(RxBusTag.ALOUD_STATE, Status.STOPFORREPLACE);
+        }else{
+            RxBus.get().post(RxBusTag.ALOUD_STATE, Status.STOP);
+        }
         unRegisterMediaButton();
         unregisterReceiver(broadcastReceiver);
         clearTTS();
@@ -681,7 +710,7 @@ public class ReadAloudService extends Service {
     }
 
     public enum Status {
-        PLAY, STOP, PAUSE, NEXT
+        PLAY, STOP, PAUSE, NEXT, STOPFORREPLACE
     }
 
 }

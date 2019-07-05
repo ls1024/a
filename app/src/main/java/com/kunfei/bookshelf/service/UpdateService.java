@@ -10,9 +10,6 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-import androidx.core.app.NotificationCompat;
-
 import com.hwangjr.rxbus.RxBus;
 import com.kunfei.bookshelf.MApplication;
 import com.kunfei.bookshelf.R;
@@ -26,6 +23,8 @@ import com.kunfei.bookshelf.view.activity.UpdateActivity;
 import java.io.File;
 import java.io.InputStream;
 
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 

@@ -5,10 +5,12 @@ import android.text.TextUtils;
 
 import androidx.annotation.Nullable;
 
+import com.hwangjr.rxbus.RxBus;
 import com.kunfei.bookshelf.DbHelper;
 import com.kunfei.bookshelf.MApplication;
 import com.kunfei.bookshelf.base.BaseModelImpl;
 import com.kunfei.bookshelf.bean.BookSourceBean;
+import com.kunfei.bookshelf.constant.RxBusTag;
 import com.kunfei.bookshelf.dao.BookSourceBeanDao;
 import com.kunfei.bookshelf.model.analyzeRule.AnalyzeHeaders;
 import com.kunfei.bookshelf.model.impl.IHttpGetApi;
@@ -35,17 +37,17 @@ public class BookSourceManager {
 
     public static List<BookSourceBean> getSelectedBookSource() {
         return DbHelper.getDaoSession().getBookSourceBeanDao().queryBuilder()
-                .where(BookSourceBeanDao.Properties.Enable.eq(true))
-                .orderRaw(BookSourceBeanDao.Properties.Weight.columnName + " DESC")
-                .orderAsc(BookSourceBeanDao.Properties.SerialNumber)
-                .list();
+                    .where(BookSourceBeanDao.Properties.Enable.eq(true))
+                    .orderRaw(BookSourceBeanDao.Properties.Weight.columnName + " DESC")
+                    .orderAsc(BookSourceBeanDao.Properties.SerialNumber)
+                    .list();
     }
 
     public static List<BookSourceBean> getAllBookSource() {
         return DbHelper.getDaoSession().getBookSourceBeanDao().queryBuilder()
-                .orderRaw(getBookSourceSort())
-                .orderAsc(BookSourceBeanDao.Properties.SerialNumber)
-                .list();
+                    .orderRaw(getBookSourceSort())
+                    .orderAsc(BookSourceBeanDao.Properties.SerialNumber)
+                    .list();
     }
 
     public static List<BookSourceBean> getSelectedBookSourceBySerialNumber() {
@@ -167,6 +169,9 @@ public class BookSourceManager {
             }
         } while (cursor.moveToNext());
         Collections.sort(groupList);
+
+        RxBus.get().post(RxBusTag.UPDATE_BOOK_SOURCE, new Object());
+
         return groupList;
     }
 

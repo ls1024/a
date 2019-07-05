@@ -22,6 +22,7 @@ import com.kunfei.bookshelf.model.BookSourceManager;
 import com.kunfei.bookshelf.model.ReplaceRuleManager;
 import com.kunfei.bookshelf.model.TxtChapterRuleManager;
 import com.kunfei.bookshelf.utils.FileUtils;
+import com.kunfei.bookshelf.utils.PermissionUtils;
 import com.kunfei.bookshelf.utils.RxUtils;
 import com.kunfei.bookshelf.utils.TimeUtils;
 import com.kunfei.bookshelf.utils.XmlUtils;
@@ -58,7 +59,8 @@ public class DataBackup {
     public void autoSave() {
         Single.create((SingleOnSubscribe<Boolean>) e -> {
             long currentTime = System.currentTimeMillis();
-            if (!BuildConfig.DEBUG) {
+            List<String> per = PermissionUtils.checkMorePermissions(MApplication.getInstance(), MApplication.PerList);
+            if (per.isEmpty() && !BuildConfig.DEBUG) {
                 File file = new File(FileUtils.getSdCardPath() + File.separator + "YueDu" + File.separator + "autoSave" + File.separator + "myBookShelf.json");
                 if (file.exists()) {
                     if (currentTime - file.lastModified() < TimeUnit.DAYS.toMillis(1)) {
@@ -135,7 +137,7 @@ public class DataBackup {
             FileHelp.deleteFile(zipFilePath);
             if (ZipUtils.zipFiles(filePaths, zipFilePath)) {
                 if (WebDavHelp.initWebDav()) {
-                    new WebDavFile(WebDavHelp.getWebDavUrl() + "YueDu").makeAsDir();
+                    new  WebDavFile(WebDavHelp.getWebDavUrl() + "YueDu").makeAsDir();
                     String putUrl = WebDavHelp.getWebDavUrl() + "YueDu/backup" + TimeUtils.date2String(TimeUtils.getNowDate(), new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())) + ".zip";
                     WebDavFile webDavFile = new WebDavFile(putUrl);
                     webDavFile.upload(zipFilePath);

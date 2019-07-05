@@ -21,9 +21,11 @@ import com.kunfei.bookshelf.base.observer.MyObserver;
 import com.kunfei.bookshelf.bean.UpdateInfoBean;
 import com.kunfei.bookshelf.model.analyzeRule.AnalyzeHeaders;
 import com.kunfei.bookshelf.model.impl.IHttpGetApi;
+import com.kunfei.bookshelf.utils.TimeUtils;
 import com.kunfei.bookshelf.view.activity.UpdateActivity;
 
 import java.io.File;
+import java.util.Date;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -43,6 +45,7 @@ public class UpdateManager {
     }
 
     public void checkUpdate(boolean showMsg) {
+        MApplication.getInstance().setLastCheckTime(TimeUtils.date2String(new Date()));
         BaseModelImpl.getInstance().getRetrofitString("https://api.github.com")
                 .create(IHttpGetApi.class)
                 .get(MApplication.getInstance().getString(R.string.latest_release_api), AnalyzeHeaders.getMap(null))
@@ -56,7 +59,7 @@ public class UpdateManager {
                             UpdateActivity.startThis(activity, updateInfo);
                         } else if (showMsg) {
                             Toast.makeText(activity, "已是最新版本", Toast.LENGTH_SHORT).show();
-                            UpdateActivity.startThis(activity, updateInfo);
+                            //UpdateActivity.startThis(activity, updateInfo);
                         }
                     }
 
@@ -84,7 +87,7 @@ public class UpdateManager {
                     String thisVersion = MApplication.getVersionName().split("\\s")[0];
                     updateInfo.setUrl(url);
                     updateInfo.setLastVersion(lastVersion);
-                    updateInfo.setDetail("# " + lastVersion + "\n" + detail);
+                    updateInfo.setDetail("# "+lastVersion +"\n"+ detail);
                     if (Integer.valueOf(lastVersion.split("\\.")[2]) > Integer.valueOf(thisVersion.split("\\.")[2])) {
                         updateInfo.setUpDate(true);
                     } else {

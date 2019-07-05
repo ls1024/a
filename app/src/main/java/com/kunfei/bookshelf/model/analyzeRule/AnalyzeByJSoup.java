@@ -2,6 +2,7 @@ package com.kunfei.bookshelf.model.analyzeRule;
 
 import android.text.TextUtils;
 
+import com.kunfei.bookshelf.utils.FormatWebText;
 import com.kunfei.bookshelf.utils.StringUtils;
 
 import org.jsoup.Jsoup;
@@ -26,6 +27,12 @@ import static android.text.TextUtils.isEmpty;
 public class AnalyzeByJSoup {
     private Element element;
 
+
+    private static final int needDealParagraphBreakNum = 5;//大于或者等于5个非段落换行则进行处理
+    private static boolean isNeedDealParagraphBreak = false;
+    public static final List<String> fauCodeList = new ArrayList<String>();
+
+
     public AnalyzeByJSoup parse(Object doc) {
         if (doc instanceof Element) {
             element = (Element) doc;
@@ -39,6 +46,19 @@ public class AnalyzeByJSoup {
         } else {
             element = Jsoup.parse(doc.toString());
         }
+
+        fauCodeList.add("。");//句号为规范结尾
+        fauCodeList.add("」");
+        fauCodeList.add("”");
+        fauCodeList.add("－");
+        fauCodeList.add("—");
+        fauCodeList.add("？");
+        fauCodeList.add("…");
+        fauCodeList.add("！");
+        fauCodeList.add("!");
+        fauCodeList.add("：");
+        fauCodeList.add("』");
+
         return this;
     }
 
@@ -60,6 +80,96 @@ public class AnalyzeByJSoup {
         if (textS.size() == 0) {
             return null;
         }
+        return StringUtils.join("\n", textS).trim();
+    }
+
+    /**
+     * 合并内容列表,得到内容
+     */
+    String getStringTP(String ruleStr) {
+        if (isEmpty(ruleStr)) {
+            return null;
+        }
+        List<String> textS = getStringList(ruleStr);
+        if (textS.size() == 0) {
+            return null;
+        }
+
+        //此处要来一个判断是否有太多的非段落换行
+        //目前算法为有paragraphBreakNum个的非段落换行则进行处理
+
+        String result = "";
+
+        String lastfauCodeName = "";
+        String thisfauCodeName = "";
+        String lasttemp ="";
+        isNeedDealParagraphBreak = false;
+        Integer noParagraphBreakNum = 0;
+        for (int i = 0; i < textS.size(); i++) {
+            if (textS.size() > 1 && i>0) {//多于1条
+                lasttemp = textS.get(i - 1);//上一条数据
+                lasttemp = FormatWebText.getContent(lasttemp);
+                if (lasttemp.length() > 0) {//上一条不为空
+                    lastfauCodeName = lasttemp.substring(lasttemp.length() - 1);
+                    if(!fauCodeList.contains(lastfauCodeName)==true){//
+                        noParagraphBreakNum ++;
+
+                        if(noParagraphBreakNum>needDealParagraphBreakNum){
+                            isNeedDealParagraphBreak = true;
+                            break;//跳出循环，
+                        }
+                    }
+                }
+            }
+        }
+
+        if(isNeedDealParagraphBreak){
+            StringBuilder content = new StringBuilder();
+            String text;
+            for (int i = 0; i < textS.size(); i++) {
+                text = textS.get(i);
+                text = FormatWebText.getContent(text);
+                if (textS.size() > 1) {
+                    if(i>0) {//從第二條處理換行
+                        if (text.length() > 0) {
+                            if (content.length() > 0) {
+
+                                lasttemp = textS.get(i - 1);//上一条数据
+                                lasttemp = FormatWebText.getContent(lasttemp);
+
+                                if (lasttemp.length() > 0) {//上一条不为空
+                                    lastfauCodeName = lasttemp.substring(lasttemp.length() - 1);
+                                    if (isNeedDealParagraphBreak) {
+                                        if (fauCodeList.contains(lastfauCodeName) == true) {
+                                            content.append("\n");
+                                            content.append("\u3000\u3000").append(text);
+                                        } else {
+                                            content.append(text);
+                                        }
+                                    } else {
+                                        content.append("\n");
+                                        content.append("\u3000\u3000").append(text);
+                                    }
+                                } else {//上一条为空
+                                    content.append("\n");
+                                    content.append("\u3000\u3000").append(text);
+                                }
+                            }
+                        }
+                    }else {
+                        content.append("\u3000\u3000").append(text);
+                    }
+                }else {
+                    content.append(text);
+                }
+                result = content.toString();
+
+            }
+            return  result;
+        }
+
+
+
         return StringUtils.join("\n", textS).trim();
     }
 
@@ -305,7 +415,7 @@ public class AnalyzeByJSoup {
                         }
                         break;
                     case "id":
-                        Elements elementsById =Collector.collect(new Evaluator.Id(rules[1]), temp);
+                        Elements elementsById = Collector.collect(new Evaluator.Id(rules[1]), temp);
                         if (rules.length == 3) {
                             int index = Integer.parseInt(rules[2]);
                             if (index < 0) {

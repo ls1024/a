@@ -45,6 +45,11 @@ public class ReadAdjustPop extends FrameLayout {
     private ReadBookControl readBookControl = ReadBookControl.getInstance();
     private Callback callback;
 
+    //语速
+    public static float voice_speed=0.5f;
+    //音调
+    public static float voice_pitch=1.0f;
+
     public ReadAdjustPop(Context context) {
         super(context);
         init(context);

@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.hwangjr.rxbus.RxBus;
 import com.kunfei.bookshelf.MApplication;
+import com.kunfei.bookshelf.constant.RxBusTag;
 import com.kunfei.bookshelf.utils.StringUtils;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ReceivingSharedActivity extends AppCompatActivity {
 
@@ -21,7 +23,8 @@ public class ReceivingSharedActivity extends AppCompatActivity {
             if ("text/plain".equals(type)) {
                 String text = getIntent().getStringExtra(Intent.EXTRA_TEXT);
                 if (openUrl(text)) {
-                    SearchBookActivity.startByKey(this, text);
+                    RxBus.get().post(RxBusTag.SEARCH_BOOK_WITH_KEYWORD, text);
+
                 }
                 finish();
                 return;
@@ -31,7 +34,7 @@ public class ReceivingSharedActivity extends AppCompatActivity {
             if ("text/plain".equals(type)) {
                 String text = getIntent().getStringExtra(Intent.EXTRA_PROCESS_TEXT);
                 if (openUrl(text)) {
-                    SearchBookActivity.startByKey(this, text);
+                    RxBus.get().post(RxBusTag.SEARCH_BOOK_WITH_KEYWORD, text);
                 }
                 finish();
                 return;
@@ -56,7 +59,7 @@ public class ReceivingSharedActivity extends AppCompatActivity {
                     .apply();
 
             Intent intent = new Intent();
-            intent.setClass(ReceivingSharedActivity.this, MainActivity.class);
+            intent.setClass(ReceivingSharedActivity.this, MyMainActivity.class);
             this.startActivity(intent);
             return false;
         } else {

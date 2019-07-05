@@ -75,7 +75,7 @@ public class AnalyzeRule {
         return this;
     }
 
-    public String getBaseUrl() {
+    public String getBaseUrl(){
         return this.baseUrl;
     }
 
@@ -221,7 +221,17 @@ public class AnalyzeRule {
                         if (isUrl && !TextUtils.isEmpty(baseUrl)) {
                             result = getAnalyzeByJSoup(result).getString0(rule.rule);
                         } else {
-                            result = getAnalyzeByJSoup(result).getString(rule.rule);
+
+                            if(rule.rule.startsWith("~")) {//此标志处理非段落换行
+                                rule.rule = rule.rule.substring(1);
+                                result = getAnalyzeByJSoup(result).getStringTP(rule.rule);
+
+                            }else{
+
+                                result = getAnalyzeByJSoup(result).getString(rule.rule);
+                            }
+
+
                         }
                 }
             }
