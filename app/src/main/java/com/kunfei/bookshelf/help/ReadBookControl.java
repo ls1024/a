@@ -70,6 +70,9 @@ public class ReadBookControl {
     private Boolean noPicSearch;
     private  int speechPitch;
 
+    private  int longPressSetting;
+
+
     private SharedPreferences preferences;
 
     private static ReadBookControl readBookControl;
@@ -132,6 +135,7 @@ public class ReadBookControl {
         this.noPicSearch = preferences.getBoolean("noPicSearch", false);
         this.speechPitch = preferences.getInt("speechPitch", 10);
 
+        this.longPressSetting  = preferences.getInt("longPressSetting", 1);//默认500毫秒
 
         initTextDrawableIndex();
     }
@@ -244,6 +248,16 @@ public class ReadBookControl {
     }
 
 
+    public int getLongPressSetting() {
+        return preferences.getInt("longPressSetting",1);
+    }
+
+    public void setLongPressSetting(int longPressSetting) {
+        this.longPressSetting = longPressSetting;
+        preferences.edit()
+                .putInt("longPressSetting", longPressSetting)
+                .apply();
+    }
 
     public int getTextColor(int textDrawableIndex) {
         if (preferences.getInt("textColor" + textDrawableIndex, 0) != 0) {

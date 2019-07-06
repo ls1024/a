@@ -56,6 +56,14 @@
         <item>@string/display_percnet</item>
     </string-array>
 
+    <string-array name="longpress_setting_list_title">
+        <item>@string/disable_longpress</item>
+        <item>@string/longpress_1</item>
+        <item>@string/longpress_2</item>
+        <item>@string/longpress_3</item>
+        <item>@string/longpress_4</item>
+    </string-array>
+
     <string-array name="bookshelf_px_title">
         <item>@string/bookshelf_px_0</item>
         <item>@string/bookshelf_px_1</item>

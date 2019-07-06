@@ -348,4 +348,12 @@
     <string name="pref_title_about">关于"搜神阅读"</string>
 
 
+
+    <string name="book_longpress_setting">长按复制设置</string>
+    <string name="disable_longpress">禁用长按</string>
+    <string name="longpress_1">长按0.5秒</string>
+    <string name="longpress_2">长按1.0秒</string>
+    <string name="longpress_3">长按1.5秒</string>
+    <string name="longpress_4">长按2.0秒</string>
+
 </resources>

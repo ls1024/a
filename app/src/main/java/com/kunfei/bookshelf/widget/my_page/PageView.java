@@ -93,6 +93,17 @@ public class PageView extends View {
     //是否在移动
     private boolean isMove = false;
 
+
+    //长按的runnable
+    private Runnable mLongPressRunnable;
+
+    //移动的阈值
+    private static final int TOUCH_SLOP = 20;
+
+    //长按时间
+
+    private   int  LONG_PRESS_TIMEOUT = 3000;
+
     //选择的列
     private List<TxtLine> mSelectLines = new ArrayList<TxtLine>();
 
@@ -159,9 +170,27 @@ public class PageView extends View {
         mTextSelectPaint.setColor(TextSelectColor);
 
         //定义长按事件
-        setOnLongClickListener(mLongClickListener);
+        //setOnLongClickListener(mLongClickListener);
+
+        mLongPressRunnable = new Runnable() {
+
+            @Override
+            public void run() {
+                performLongClick();
+                if (mStartX > 0 && mStartY > 0) {// 说明还没释放，是长按事件
+                    isLongPress = true;//长按
+                    TxtChar p = mPageLoader.DetectPressTxtChar(mStartX, mStartY);//找到长按的点
+                    firstSelectTxtChar = p;//设置开始位置字符
+                    lastSelectTxtChar = p;//设置结束位置字符
+                    mCurrentMode = Mode.PressSelectText;//设置模式为长按选择
+                    mTouchListener.onLongPress();//响应长按事件，供上层调用
+
+                }
+            }
+        };
     }
 
+    /* 使用自定义长按事件
     //长按监听
     private OnLongClickListener mLongClickListener = new OnLongClickListener() {
 
@@ -179,6 +208,7 @@ public class PageView extends View {
             return false;
         }
     };
+    */
 
     public TxtChar getFirstSelectTxtChar() {
         return firstSelectTxtChar;
@@ -592,6 +622,26 @@ public class PageView extends View {
         super.onTouchEvent(event);
 
 
+        switch (readBookControl.getLongPressSetting()) {
+
+            case 0:
+                LONG_PRESS_TIMEOUT = 0;
+                break;
+            case 1:
+                LONG_PRESS_TIMEOUT = 500;
+                break;
+            case 2:
+                LONG_PRESS_TIMEOUT = 1000;
+                break;
+            case 3:
+                LONG_PRESS_TIMEOUT = 1500;
+                break;
+            case 4:
+                LONG_PRESS_TIMEOUT = 2000;
+                break;
+        }
+
+
         if (mPageLoader != null) {
             Paint.FontMetrics fontMetrics = mPageLoader.mTextPaint.getFontMetrics();
             textHeight = Math.abs(fontMetrics.ascent) + Math.abs(fontMetrics.descent);
@@ -622,6 +672,14 @@ public class PageView extends View {
                 mStartX = x;
                 mStartY = y;
                 isMove = false;
+
+
+                //
+                if(LONG_PRESS_TIMEOUT!=0) {
+                    postDelayed(mLongPressRunnable, LONG_PRESS_TIMEOUT);
+                }
+
+                //
                 isLongPress = false;
                 canTouch = mTouchListener.onTouch();
                 mPageAnim.onTouchEvent(event);
@@ -635,16 +693,22 @@ public class PageView extends View {
                 // 判断是否大于最小滑动值。
                 int slop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
                 if (!isMove) {
-                    isMove = Math.abs(mStartX - event.getX()) > slop || Math.abs(mStartY - event.getY()) > slop;
+                    isMove = Math.abs(mStartX - event.getX()) > TOUCH_SLOP || Math.abs(mStartY - event.getY()) > TOUCH_SLOP;
                 }
 
                 // 如果滑动了,且不是长按，则进行翻页。
                 if (isMove) {
+                    if(LONG_PRESS_TIMEOUT!=0) {
+                        removeCallbacks(mLongPressRunnable);
+                    }
                     mPageAnim.onTouchEvent(event);
                 }
                 break;
             case MotionEvent.ACTION_UP:
                 if (!isMove) {
+                    if(LONG_PRESS_TIMEOUT!=0) {
+                        removeCallbacks(mLongPressRunnable);
+                    }
                     //设置中间区域范围
                     if (mCenterRect == null) {
                         mCenterRect = new RectF(mViewWidth / 4f, mViewHeight / 4f,
@@ -682,10 +746,16 @@ public class PageView extends View {
                     }
                 }
 
+
+
                 if(firstSelectTxtChar==null || isMove){//长安选择删除选中状态
                     mPageAnim.onTouchEvent(event);
                 }else{
                     if(!isLongPress){
+                        //释放了
+                        if(LONG_PRESS_TIMEOUT!=0) {
+                            removeCallbacks(mLongPressRunnable);
+                        }
                         firstSelectTxtChar = null;
                         mSelectTextPath.reset();
                         invalidate();

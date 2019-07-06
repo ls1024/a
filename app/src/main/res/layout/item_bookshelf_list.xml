@@ -4,9 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv_content"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="wrap_content"
     android:clickable="true"
     android:focusable="true"
+    android:paddingLeft="6dp"
+    android:paddingRight="6dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="3dp"
     android:foreground="?android:attr/selectableItemBackground"
     android:orientation="vertical">
 

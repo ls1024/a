@@ -73,6 +73,10 @@ public class MoreSettingPop extends FrameLayout {
     TextView tvProgressDisplay;
     @BindView(R.id.ll_progress_display)
     LinearLayout llProgressDisplay;
+    @BindView(R.id.tv_longpress_setting)
+    TextView tvLongpressSetting;
+    @BindView(R.id.ll_longpress_setting)
+    LinearLayout llLongpressSetting;
     @BindView(R.id.sw_volume_next_page)
     Switch swVolumeNextPage;
     @BindView(R.id.sw_read_aloud_key)
@@ -284,6 +288,19 @@ public class MoreSettingPop extends FrameLayout {
             dialog.show();
         });
 
+        llLongpressSetting.setOnClickListener(view -> {
+            AlertDialog dialog = new AlertDialog.Builder(context)
+                    .setTitle(context.getString(R.string.book_longpress_setting))
+                    .setSingleChoiceItems(context.getResources().getStringArray(R.array.longpress_setting_list_title), readBookControl.getLongPressSetting(), (dialogInterface, i) -> {
+                        readBookControl.setLongPressSetting(i);
+                        upLongPressSetting(i);
+                        dialogInterface.dismiss();
+                        //callback.refreshPage();
+                    })
+                    .create();
+            dialog.show();
+        });
+
         llNavigationBarColor.setOnClickListener(view -> {
             AlertDialog dialog = new AlertDialog.Builder(context)
                     .setTitle(context.getString(R.string.re_navigation_bar_color))
@@ -302,6 +319,7 @@ public class MoreSettingPop extends FrameLayout {
     private void initData() {
         upScreenDirection(readBookControl.getScreenDirection());
         upProgressDisplay(readBookControl.getProgressDisplay());
+        upLongPressSetting(readBookControl.getLongPressSetting());
         upScreenTimeOut(readBookControl.getScreenTimeOut());
         upFConvert(readBookControl.getTextConvert());
         upNavBarColor(readBookControl.getNavBarColor());
@@ -368,6 +386,18 @@ public class MoreSettingPop extends FrameLayout {
             tvProgressDisplay.setText(progressDisplayListTitle[progressDisplay]);
         }
     }
+
+    private void upLongPressSetting(int longpresssettiing) {
+        String[] longpressSettingListTitle = context.getResources().getStringArray(R.array.longpress_setting_list_title);
+        if (longpresssettiing >= longpressSettingListTitle.length) {
+            tvLongpressSetting.setText(longpressSettingListTitle[0]);
+        } else {
+            tvLongpressSetting.setText(longpressSettingListTitle[longpresssettiing]);
+        }
+    }
+
+
+
 
     private void upNavBarColor(int nColor) {
         reNavBarColorVal.setText(context.getResources().getStringArray(R.array.NavBarColors)[nColor]);
